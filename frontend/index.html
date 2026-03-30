@@ -304,10 +304,9 @@
 
 <!-- ==================== REDEMPTION FLOW ==================== -->
 <section class="px-8 py-32 max-w-screen-2xl mx-auto">
-  <div class="bg-on-background rounded-3xl p-12 lg:p-20 relative overflow-hidden group">
-    <div class="absolute top-0 right-0 w-1/2 h-full opacity-30 pointer-events-none">
-      <img alt="Art Asset" class="w-full h-full object-cover grayscale brightness-50 mix-blend-overlay group-hover:scale-110 transition-transform duration-[2s]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk-cUiH0OFTSl6w4A6qekiHdND-IXohmQtCfaBO2HTvEmGiLauQUzsiZWEm9UU8TJWRAnlfjXQVHzQKzma3yr_k3-y6h6T41yhDTeCS9-OBmavLOjGO3kN-jgdfZnBtknuNibFyKToCmzwvySZnGLZS04KgsQNYoF8EyG6jO_uScdDpBfgafd0iYsSmZUg98ZHflSMkRyvAkStriNzb-Da98zgfV-GL01DhA1Qc1V5jYYUtT6YUkrirojfViY2EJ34iHcp7gQvT1_q"/>
-    </div>
+  <div id="redemptionBox" class="bg-on-background rounded-3xl p-12 lg:p-20 relative overflow-hidden group">
+    <!-- Vanta.js clouds background -->
+    <div id="vantaRedemption" class="absolute inset-0 opacity-40 pointer-events-none" style="border-radius: inherit;"></div>
     <div class="relative z-10 max-w-2xl">
       <h2 class="font-headline text-5xl font-extrabold text-white mb-8 tracking-tight">Physical Redemption</h2>
       <p class="text-zinc-400 text-lg mb-12 leading-relaxed">
@@ -458,6 +457,8 @@
 
 <!-- ==================== JS ==================== -->
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
 <script>
 /* ============================================================
    LABUDAO  –  Web3 Integration  (ethers v6, inline)
@@ -771,6 +772,26 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     $("#topNav").classList.toggle("scrolled", window.scrollY > 10);
   });
+
+  // Vanta.js clouds for Redemption section
+  if (typeof VANTA !== "undefined" && typeof THREE !== "undefined") {
+    VANTA.CLOUDS({
+      el: "#vantaRedemption",
+      THREE: THREE,
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200,
+      minWidth: 200,
+      skyColor: 0x111111,
+      cloudColor: 0x3a3225,
+      cloudShadowColor: 0x1a1a1a,
+      sunColor: 0xd5af37,
+      sunGlareColor: 0x745b00,
+      sunlightColor: 0x4a3d1a,
+      speed: 0.6,
+    });
+  }
 
   // Account / chain listeners
   if (window.ethereum) {
