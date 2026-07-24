@@ -30,7 +30,7 @@ const GOV_ABI = [
 ];
 
 const STATE_LABELS = ["Invalid", "Active", "Succeeded", "Defeated", "Executed"];
-const STATE_COLORS = ["#999", "#ff9bb7", "#4caf50", "#e57373", "#90a4ae"];
+const STATE_COLORS = ["#8c8a84", "#9bacc0", "#aeb8c4", "#b9827f", "#e6e8eb"];
 
 // ---- Global state ----
 let provider = null;
@@ -38,10 +38,16 @@ let signer   = null;
 let token    = null;
 let governor = null;
 let userAddr = null;
+let userBalance = 0;
 
 // ---- DOM helpers ----
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
+
+function setText(sel, value) {
+  const el = $(sel);
+  if (el) el.textContent = value;
+}
 
 function truncAddr(addr) {
   return addr.slice(0, 6) + "..." + addr.slice(-4);
@@ -65,27 +71,6 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-// ---- Vanta background ----
-function initVanta() {
-  if (typeof VANTA === "undefined" || typeof THREE === "undefined") return;
-  VANTA.CLOUDS({
-    el: "#vanta-bg",
-    THREE: THREE,
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    skyColor: 0xf0e8ff,
-    cloudColor: 0xffd6e7,
-    cloudShadowColor: 0xeabfcf,
-    sunColor: 0xff9bb7,
-    sunGlareColor: 0xffd2df,
-    sunlightColor: 0xfff0f5,
-    speed: 0.8,
-  });
-}
-
 // ---- Wallet ----
 async function connectWallet() {
   if (!window.ethereum) {
@@ -102,8 +87,9 @@ async function connectWallet() {
     token    = new ethers.Contract(TOKEN_ADDR, TOKEN_ABI, signer);
     governor = new ethers.Contract(GOV_ADDR, GOV_ABI, signer);
 
-    $("#connectBtn").textContent = truncAddr(userAddr);
-    $("#connectBtn").classList.add("connected");
+    setText("#connectBtn", truncAddr(userAddr));
+    $("#connectBtn")?.classList.add("connected");
+    setText("#heroConnectBtn", "Wallet connected");
 
     await refreshWalletInfo();
     await loadProposals();
@@ -126,14 +112,18 @@ async function refreshWalletInfo() {
 
     const balStr = fmt(balance);
     const supStr = fmt(supply);
+    userBalance = Number(ethers.formatUnits(balance, 18));
 
-    $("#walletAddress").textContent = truncAddr(userAddr);
-    $("#walletNetwork").textContent =
-      Number(network.chainId) === 1 ? "Ethereum" : "Chain " + network.chainId;
-    $("#labuBalance").textContent = balStr + " LABU";
-    $("#totalSupplyDisplay").textContent = supStr;
-    $("#mintTotalSupply").textContent = supStr + " LABU";
-    $("#mintYourBalance").textContent = balStr + " LABU";
+    setText("#walletAddress", truncAddr(userAddr));
+    setText(
+      "#walletNetwork",
+      Number(network.chainId) === 1 ? "Ethereum" : "Chain " + network.chainId
+    );
+    setText("#labuBalance", balStr + " LABU");
+    setText("#totalSupplyDisplay", supStr);
+    setText("#mintTotalSupply", supStr + " LABU");
+    setText("#mintYourBalance", balStr + " LABU");
+    syncMemberPass();
   } catch (err) {
     console.error("Failed to refresh wallet info:", err);
   }
@@ -173,7 +163,7 @@ async function handleMint() {
 
 // ---- Governance ----
 async function loadGovernanceInfo() {
-  if (!governor) return;
+  if (!governor || !$("#quorumDisplay")) return;
   try {
     const [q, vp] = await Promise.all([
       governor.quorum(),
@@ -189,6 +179,7 @@ async function loadGovernanceInfo() {
 async function loadProposals() {
   if (!governor) return;
   const listEl = $("#proposalsList");
+  if (!listEl) return;
 
   try {
     const count = await governor.proposalCount();
@@ -342,6 +333,87 @@ function initScrollButtons() {
   });
 }
 
+// ---- Responsive navigation ----
+function initNavigation() {
+  const toggle = $(".nav-toggle");
+  const nav = $("#primaryNav");
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    toggle.setAttribute("aria-label", open ? "Open navigation" : "Close navigation");
+    nav.classList.toggle("open", !open);
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation");
+      nav.classList.remove("open");
+    });
+  });
+}
+
+// ---- Physical rights member pass ----
+function getPassFrame() {
+  return $("#memberPassFrame");
+}
+
+function syncMemberPass() {
+  const frame = getPassFrame();
+  if (!frame?.contentWindow) return;
+  frame.contentWindow.postMessage({
+    type: "labudao:pass-data",
+    address: userAddr,
+    balance: userBalance,
+    verified: Boolean(userAddr && token),
+  }, window.location.origin);
+}
+
+function openMemberPass() {
+  const modal = $("#memberPassModal");
+  const frame = getPassFrame();
+  if (!modal || !frame) return;
+  if (!frame.src) frame.src = frame.dataset.src;
+  modal.hidden = false;
+  document.body.classList.add("pass-open");
+  window.setTimeout(syncMemberPass, 250);
+  $(".member-pass-close")?.focus();
+}
+
+function closeMemberPass() {
+  const modal = $("#memberPassModal");
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.classList.remove("pass-open");
+  $("#memberPassBtn")?.focus();
+}
+
+function initMemberPass() {
+  $("#memberPassBtn")?.addEventListener("click", openMemberPass);
+  $$("[data-close-pass]").forEach((button) => {
+    button.addEventListener("click", closeMemberPass);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !$("#memberPassModal")?.hidden) {
+      closeMemberPass();
+    }
+  });
+
+  window.addEventListener("message", async (event) => {
+    if (event.origin !== window.location.origin) return;
+    if (event.data?.type === "labudao:pass-ready") {
+      syncMemberPass();
+    }
+    if (event.data?.type === "labudao:connect") {
+      await connectWallet();
+      syncMemberPass();
+    }
+  });
+}
+
 // ---- Account / chain change listeners ----
 function initListeners() {
   if (!window.ethereum) return;
@@ -349,8 +421,11 @@ function initListeners() {
   window.ethereum.on("accountsChanged", (accounts) => {
     if (accounts.length === 0) {
       userAddr = null;
-      $("#connectBtn").textContent = "Connect Wallet";
-      $("#connectBtn").classList.remove("connected");
+      userBalance = 0;
+      setText("#connectBtn", "Connect");
+      $("#connectBtn")?.classList.remove("connected");
+      setText("#heroConnectBtn", "Connect & mint");
+      syncMemberPass();
       return;
     }
     userAddr = accounts[0];
@@ -363,21 +438,166 @@ function initListeners() {
   });
 }
 
+// ---- Redemption interface prototype ----
+function initRedeemPrototype() {
+  const requestView = $("#redeemRequestView");
+  const trackingView = $("#redeemTrackingView");
+  const jurisdiction = $("#redeemJurisdiction");
+  const contact = $("#redeemContact");
+  const startButton = $("#startRedeemBtn");
+  const advanceButton = $("#advanceRedeemBtn");
+  const cancelButton = $("#cancelRedeemBtn");
+
+  if (!requestView || !trackingView || !jurisdiction || !contact || !startButton) {
+    return;
+  }
+
+  const stageContent = [
+    null,
+    {
+      label: "02 / Lock",
+      icon: "lock",
+      heading: "Right reserved for review.",
+      body: "The selected redemption right is held inside this prototype while the custodian prepares its review.",
+      activity: "Redemption right reserved",
+    },
+    {
+      label: "03 / Review",
+      icon: "fact_check",
+      heading: "Custodian review underway.",
+      body: "The object record, delivery destination and custody details are being checked before release.",
+      activity: "Custodian review simulated",
+    },
+    {
+      label: "04 / Delivery",
+      icon: "local_shipping",
+      heading: "Object prepared for delivery.",
+      body: "The physical collectible has entered the simulated delivery stage with its record kept attached.",
+      activity: "Delivery stage simulated",
+    },
+    {
+      label: "05 / Confirm",
+      icon: "verified",
+      heading: "Prototype journey complete.",
+      body: "A production flow would confirm receipt and close or transform the redeemed right onchain.",
+      activity: "Receipt confirmation simulated",
+    },
+  ];
+
+  let currentStage = 1;
+
+  function syncStartButton() {
+    startButton.disabled = !(jurisdiction.value && contact.value);
+  }
+
+  function addPrototypeActivity(textValue) {
+    const list = $("#redeemActivityList");
+    if (!list) return;
+    const item = document.createElement("li");
+    item.innerHTML = `<span>Now</span><div><strong>${escapeHtml(textValue)}</strong><small>Interface simulation</small></div>`;
+    list.prepend(item);
+  }
+
+  function renderTrackingStage() {
+    const stage = stageContent[currentStage];
+    if (!stage) return;
+
+    setText("#trackingStatusTitle", stage.label);
+    setText("#trackingStatusIcon", stage.icon);
+    setText("#trackingStatusHeading", stage.heading);
+    setText("#trackingStatusBody", stage.body);
+
+    $$("#redeemTrackingRail li").forEach((item, index) => {
+      item.classList.toggle("is-complete", index < currentStage);
+      item.classList.toggle("is-current", index === currentStage);
+      const marker = item.querySelector(":scope > span");
+      if (marker) {
+        if (index < currentStage) {
+          marker.className = "material-symbols-outlined";
+          marker.textContent = "check";
+        } else {
+          marker.className = "";
+          marker.textContent = String(index + 1).padStart(2, "0");
+        }
+      }
+    });
+
+    $$("#trackingChecklist li").forEach((item, index) => {
+      item.classList.toggle("is-done", index < currentStage);
+      item.classList.toggle("is-active", index === currentStage);
+      const marker = item.querySelector("span");
+      if (!marker) return;
+      if (index < currentStage) {
+        marker.className = "material-symbols-outlined";
+        marker.textContent = "check";
+      } else if (index === currentStage) {
+        marker.className = "material-symbols-outlined";
+        marker.textContent = "more_horiz";
+      } else {
+        marker.className = "";
+        marker.textContent = "";
+      }
+    });
+
+    if (advanceButton) {
+      const complete = currentStage === stageContent.length - 1;
+      advanceButton.disabled = complete;
+      advanceButton.textContent = complete ? "Prototype complete" : "Simulate next stage";
+    }
+  }
+
+  jurisdiction.addEventListener("change", syncStartButton);
+  contact.addEventListener("change", syncStartButton);
+
+  startButton.addEventListener("click", () => {
+    if (startButton.disabled) return;
+    currentStage = 1;
+    setText("#trackingJurisdiction", jurisdiction.value);
+    setText("#trackingContact", contact.value);
+    requestView.hidden = true;
+    trackingView.hidden = false;
+    renderTrackingStage();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  advanceButton?.addEventListener("click", () => {
+    if (currentStage >= stageContent.length - 1) return;
+    currentStage += 1;
+    renderTrackingStage();
+    addPrototypeActivity(stageContent[currentStage].activity);
+  });
+
+  cancelButton?.addEventListener("click", () => {
+    trackingView.hidden = true;
+    requestView.hidden = false;
+    currentStage = 1;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  syncStartButton();
+}
+
 // ---- Init ----
 document.addEventListener("DOMContentLoaded", () => {
-  initVanta();
   initScrollButtons();
+  initNavigation();
   initListeners();
+  initMemberPass();
+  initRedeemPrototype();
 
   // Wallet
-  $("#connectBtn").addEventListener("click", connectWallet);
+  $("#connectBtn")?.addEventListener("click", connectWallet);
+  $("#heroConnectBtn")?.addEventListener("click", async () => {
+    await connectWallet();
+    if (userAddr) window.location.href = "dao.html#participation";
+  });
 
   // Mint
-  $("#mintBtn").addEventListener("click", handleMint);
+  $("#mintBtn")?.addEventListener("click", handleMint);
 
   // Governance
-  $("#createProposalBtn").addEventListener("click", handlePropose);
-  $("#refreshProposalsBtn").addEventListener("click", loadProposals);
+  $("#createProposalBtn")?.addEventListener("click", handlePropose);
+  $("#refreshProposalsBtn")?.addEventListener("click", loadProposals);
 
   // Vote buttons
   $$("[data-vote]").forEach((btn) => {

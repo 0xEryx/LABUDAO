@@ -1,812 +1,259 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LABUDAO - The New Standard for RWA Collectibles</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<!-- Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "inverse-surface": "#2f3131",
-          "surface-container-highest": "#e2e2e2",
-          "tertiary-fixed-dim": "#b4c5ff",
-          "on-background": "#1a1c1c",
-          "on-tertiary-fixed-variant": "#27438a",
-          "secondary-fixed": "#f7e1a6",
-          "error": "#ba1a1a",
-          "surface": "#f9f9f9",
-          "on-primary-fixed": "#241a00",
-          "secondary": "#6d5d2f",
-          "on-error-container": "#93000a",
-          "surface-dim": "#dadada",
-          "primary-fixed-dim": "#eac249",
-          "inverse-on-surface": "#f1f1f1",
-          "outline": "#7f7663",
-          "on-tertiary-container": "#254188",
-          "on-surface": "#1a1c1c",
-          "tertiary-container": "#97b0ff",
-          "on-tertiary-fixed": "#00174b",
-          "on-secondary-fixed": "#241a00",
-          "surface-variant": "#e2e2e2",
-          "on-surface-variant": "#4d4635",
-          "on-primary-fixed-variant": "#584400",
-          "on-secondary-fixed-variant": "#544519",
-          "error-container": "#ffdad6",
-          "outline-variant": "#d0c5af",
-          "surface-tint": "#745b00",
-          "primary-container": "#d5af37",
-          "primary-fixed": "#ffe08b",
-          "inverse-primary": "#eac249",
-          "surface-container": "#eeeeee",
-          "primary": "#745b00",
-          "on-primary": "#ffffff",
-          "tertiary": "#415ba4",
-          "on-secondary-container": "#736334",
-          "on-error": "#ffffff",
-          "on-secondary": "#ffffff",
-          "background": "#f9f9f9",
-          "on-primary-container": "#564300",
-          "surface-container-low": "#f3f3f3",
-          "secondary-container": "#f7e1a6",
-          "on-tertiary": "#ffffff",
-          "surface-bright": "#f9f9f9",
-          "tertiary-fixed": "#dbe1ff",
-          "surface-container-lowest": "#ffffff",
-          "secondary-fixed-dim": "#dac58d",
-          "surface-container-high": "#e8e8e8"
-        },
-        fontFamily: {
-          "headline": ["Manrope"],
-          "body": ["Inter"],
-          "label": ["Inter"]
-        },
-        borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-      },
-    },
-  }
-</script>
-<style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-  .gold-gradient {
-    background: linear-gradient(135deg, #745b00 0%, #d5af37 100%);
-  }
-  /* Modal */
-  .modal-backdrop {
-    position: fixed; inset: 0; z-index: 100;
-    background: rgba(0,0,0,0.45); backdrop-filter: blur(6px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity .25s;
-  }
-  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
-  .modal-panel {
-    background: #fff; border-radius: 1rem; padding: 2.5rem;
-    width: 90%; max-width: 540px; max-height: 90vh; overflow-y: auto;
-    transform: translateY(24px); transition: transform .25s;
-  }
-  .modal-backdrop.open .modal-panel { transform: translateY(0); }
-  /* Toast */
-  #toast {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-    padding: 1rem 1.5rem; border-radius: .75rem; font-size: .875rem; font-weight: 600;
-    box-shadow: 0 12px 40px rgba(0,0,0,.15);
-    transform: translateY(120%); opacity: 0; transition: all .35s;
-    max-width: 420px;
-  }
-  #toast.show { transform: translateY(0); opacity: 1; }
-  #toast.info { background: #e3f2fd; color: #1565c0; }
-  #toast.success { background: #e8f5e9; color: #2e7d32; }
-  #toast.error { background: #ffebee; color: #c62828; }
-  /* Vote bar */
-  .vote-progress { height: 8px; border-radius: 9999px; overflow: hidden; display: flex; }
-  .vote-progress .bar-for { background: #4caf50; }
-  .vote-progress .bar-against { background: #ef5350; }
-  .vote-progress .bar-abstain { background: #bdbdbd; }
-  /* Spinner */
-  .spinner { display: inline-block; width: 18px; height: 18px; border: 2.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .6s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  /* Nav scroll shadow */
-  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.06); }
-  /* Smooth anchor scrolling */
-  html { scroll-behavior: smooth; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070806">
+  <meta name="description" content="LABUDAO is a LABUBU-native, community-owned, non-profit-by-mission experimental DAO building an open protocol for collective stewardship.">
+  <title>LABUDAO — For LABUBU, by its community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
-
-<!-- ==================== TOP NAV ==================== -->
-<nav id="topNav" class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl transition-shadow">
-  <div class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
-    <div class="text-2xl font-black tracking-tighter text-zinc-900">LABUDAO</div>
-    <div class="hidden md:flex items-center space-x-12">
-      <a class="text-[#745b00] font-bold border-b-2 border-[#745b00] pb-1" href="#hero">Explore</a>
-      <a class="text-zinc-500 font-medium hover:text-zinc-800 transition-colors" href="#governance">DAO</a>
-      <a class="text-zinc-500 font-medium hover:text-zinc-800 transition-colors" href="#mint">Mint</a>
-      <a class="text-zinc-500 font-medium hover:text-zinc-800 transition-colors" href="#dashboard">Dashboard</a>
-    </div>
-    <div class="flex items-center space-x-4">
-      <!-- Wallet button -->
-      <button id="connectBtn" class="flex items-center space-x-2 px-6 py-2.5 gold-gradient text-on-primary rounded-lg font-bold text-sm hover:scale-95 transition-all duration-200 shadow-lg shadow-primary/20">
-        <span class="material-symbols-outlined text-sm">account_balance_wallet</span>
-        <span id="connectLabel">Connect Wallet</span>
+<body data-page="overview">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="LABUDAO home">LABU<span>/DAO</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
+      <span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a class="active" href="index.html">Overview</a>
+      <a href="protocol.html">Protocol</a>
+      <a href="dao.html">Governance</a>
+      <a href="redeem.html">Redeem</a>
+      <a href="roadmap.html">Roadmap</a>
+    </nav>
+    <div class="header-actions">
+      <button class="button button-pass" id="memberPassBtn" type="button" aria-haspopup="dialog">
+        <span class="material-symbols-outlined" aria-hidden="true">badge</span>
+        Pass
+      </button>
+      <button class="button button-wallet" id="connectBtn" type="button">
+        <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+        Connect
       </button>
     </div>
+  </header>
+
+  <div class="home-particle-background" aria-hidden="true">
+    <iframe src="particle-labubu.html" title="" loading="eager" tabindex="-1"></iframe>
   </div>
-</nav>
 
-<main class="pt-20">
-
-<!-- ==================== HERO ==================== -->
-<section id="hero" class="relative min-h-[921px] flex items-center overflow-hidden px-8 max-w-screen-2xl mx-auto">
-  <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
-    <div class="z-10 order-2 lg:order-1">
-      <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-xs font-bold tracking-widest uppercase">
-        HKU Capstone Project
-      </div>
-      <h1 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-on-background leading-none mb-8">
-        The New <span class="text-primary italic">Standard</span> for RWA Collectibles
-      </h1>
-      <p class="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed font-light">
-        A HKU Capstone project pushing the boundaries of RWA + DAO governance. Fractionalized ownership of high-end art toys, secured by Ethereum.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <button onclick="document.getElementById('mint').scrollIntoView({behavior:'smooth'})" class="px-10 py-5 gold-gradient text-on-primary rounded-lg font-bold text-lg hover:opacity-90 transition-all">
-          Mint $LABU
-        </button>
-        <button onclick="document.getElementById('governance').scrollIntoView({behavior:'smooth'})" class="px-10 py-5 bg-surface-container-highest text-on-surface rounded-lg font-bold text-lg hover:bg-surface-variant transition-all">
-          Enter Governance
-        </button>
-      </div>
-
-      <!-- Wallet Info Card (hidden until connected) -->
-      <div id="walletCard" class="mt-10 hidden grid grid-cols-3 gap-4 p-5 bg-white/80 backdrop-blur-md rounded-xl border border-outline-variant/30">
-        <div>
-          <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Wallet</span>
-          <p id="walletAddr" class="text-sm font-bold mt-1 truncate">-</p>
-        </div>
-        <div>
-          <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Network</span>
-          <p id="walletNetwork" class="text-sm font-bold mt-1">-</p>
-        </div>
-        <div>
-          <span class="text-[10px] font-bold text-outline uppercase tracking-widest">$LABU Balance</span>
-          <p id="walletBalance" class="text-sm font-bold mt-1">-</p>
+  <main id="main">
+    <section class="home-hero" id="hero">
+      <div class="home-copy">
+        <h1>For LABUBU.<br><em>By its community.</em></h1>
+        <p class="home-lead">A non-profit experiment in collective stewardship, culture and open protocol.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="dao.html">
+            Enter governance
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span>
+          </a>
+          <a class="button button-quiet" href="roadmap.html">Read our roadmap</a>
         </div>
       </div>
-    </div>
 
-    <div class="relative order-1 lg:order-2 h-[500px] lg:h-[700px] flex justify-center items-center">
-      <div class="absolute w-[100%] h-[100%] bg-[radial-gradient(circle,_rgba(212,175,55,0.15)_0%,_transparent_70%)] rounded-full blur-3xl -z-10"></div>
-      <div class="absolute bottom-1/4 w-3/4 h-8 bg-[#D4AF37]/10 blur-2xl rounded-[100%] -z-5"></div>
-      <img alt="LABUBU Collectible" class="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:scale-105 transition-transform duration-700 cursor-pointer rounded-2xl" src="labubu.webp"/>
-    </div>
-  </div>
-</section>
+      <div class="hero-index" aria-label="Project summary">
+        <span>LABUBU-native</span>
+        <span>Community-owned</span>
+        <span>Open-source future</span>
+      </div>
+    </section>
 
-<!-- ==================== BENTO: MINT + GOVERNANCE ==================== -->
-<section id="bento" class="px-8 py-24 max-w-screen-2xl mx-auto bg-surface-container-low">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <section class="home-story" aria-labelledby="storyTitle">
+      <p class="eyebrow">Chapter 01 / The origin</p>
+      <div class="story-body">
+        <h2 id="storyTitle">LABUBU gave us<br><em>a place to begin.</em></h2>
+        <div class="story-copy">
+          <p>LABUBU sits where character design, art toys, collector ritual and personal memory meet. It is not a placeholder for a generic “real-world asset.” It is the culture this DAO was created to serve.</p>
+          <p>LABUDAO begins with LABUBU collectors and one concrete question: can a community protect the object, preserve its story and decide together what should happen next?</p>
+        </div>
+        <blockquote>We begin with one character, not because the future is small, but because proof must be real.</blockquote>
+      </div>
+      <ul aria-label="LABUDAO origin">
+        <li>LABUBU</li>
+        <li>Community</li>
+        <li>Culture</li>
+        <li>Stewardship</li>
+      </ul>
+    </section>
 
-    <!-- ===== MINT COMPONENT ===== -->
-    <div id="mint" class="lg:col-span-5 bg-surface-container-lowest p-10 rounded-xl flex flex-col justify-between">
+    <section class="fracture-section" aria-labelledby="fractureTitle">
+      <header class="narrative-heading">
+        <p class="eyebrow">Chapter 02 / The commons</p>
+        <div>
+          <h2 id="fractureTitle">Not a fund.<br><em>Not a marketplace.</em><br>A commons.</h2>
+          <p>LABUDAO is non-profit by mission. We are not here to extract value from fandom or promise token returns. We use transparent DAO governance to return cultural value to the community.</p>
+        </div>
+      </header>
+      <div class="fracture-grid">
+        <article>
+          <span>01</span>
+          <h3>Protect the culture.</h3>
+          <p>Preserve the stories, provenance and community meaning around LABUBU instead of reducing every object to a price.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Share access.</h3>
+          <p>Use exhibitions, loans, gatherings and public-interest programs to let more people experience what a community protects.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Govern in public.</h3>
+          <p>Make proposals, treasury rules, custody decisions and community responsibilities visible and accountable.</p>
+        </article>
+      </div>
+      <p class="fracture-statement">If LABUDAO creates value, that value should return to the community, the objects and the culture around them.</p>
+    </section>
+
+    <section class="protocol-promise" aria-labelledby="promiseTitle">
+      <header class="narrative-heading">
+        <p class="eyebrow">Chapter 03 / The experiment</p>
+        <div>
+          <h2 id="promiseTitle">One community.<br><em>A complete loop.</em></h2>
+          <p>We will not call the protocol universal until the LABUBU community proves the entire lifecycle: identity, custody, rights, governance and verified redemption.</p>
+        </div>
+      </header>
+      <div class="promise-list" aria-label="Protocol highlights">
+        <article>
+          <span class="material-symbols-outlined" aria-hidden="true">fingerprint</span>
+          <div><small>01 / Proposed</small><h3>Living LABUBU Passport</h3></div>
+          <p>Give one physical LABUBU a durable record of origin, condition, community decisions and verified lifecycle events.</p>
+        </article>
+        <article>
+          <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+          <div><small>02 / Proposed</small><h3>Verifiable Custody</h3></div>
+          <p>Connect the onchain record to who safeguards the real object, when it was checked and how its condition changed.</p>
+        </article>
+        <article>
+          <span class="material-symbols-outlined" aria-hidden="true">account_tree</span>
+          <div><small>03 / Proposed</small><h3>Community Rights</h3></div>
+          <p>Make exhibition, access, lending, storytelling, transfer and redemption distinct responsibilities the community can understand.</p>
+        </article>
+        <article>
+          <span class="material-symbols-outlined" aria-hidden="true">how_to_vote</span>
+          <div><small>04 / Pilot live</small><h3>Transparent Decisions</h3></div>
+          <p>Turn proposals and votes into an accountable record of how LABUBU collectors choose to steward their shared culture.</p>
+        </article>
+        <article>
+          <span class="material-symbols-outlined" aria-hidden="true">language</span>
+          <div><small>05 / Pledged</small><h3>Open-source Future</h3></div>
+          <p>After the LABUBU loop works, release the protocol, contracts, documentation and reference implementation for everyone.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rights-section" aria-labelledby="rightsTitle">
       <div>
-        <div class="flex justify-between items-start mb-12">
-          <h2 class="font-headline text-4xl font-bold tracking-tight">Mint $LABU</h2>
-          <span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-xs rounded-full font-bold">LIVE NOW</span>
-        </div>
-        <p class="text-on-surface-variant mb-8 leading-relaxed">
-          Free mint $LABU tokens on Ethereum Mainnet. Each token is an ERC-20 governance token for the LABUDAO ecosystem. Max supply: 10,000,000 LABU.
-        </p>
-
-        <!-- Supply stats -->
-        <div class="grid grid-cols-2 gap-4 mb-8">
-          <div class="bg-surface-container-low rounded-lg p-4">
-            <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Total Supply</span>
-            <p id="statTotalSupply" class="text-lg font-bold mt-1">-</p>
-          </div>
-          <div class="bg-surface-container-low rounded-lg p-4">
-            <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Your Balance</span>
-            <p id="statYourBalance" class="text-lg font-bold mt-1">-</p>
-          </div>
-        </div>
-
-        <div class="space-y-6">
-          <div class="relative">
-            <label class="block text-xs font-bold text-outline uppercase tracking-widest mb-2 px-1">Amount to Mint</label>
-            <input id="mintAmount" class="w-full bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-3xl font-bold p-4 transition-colors" placeholder="100" type="number" min="1" value="100"/>
-            <span class="absolute right-4 bottom-4 font-bold text-on-surface-variant">LABU</span>
-          </div>
-          <div class="flex justify-between text-sm font-medium text-on-surface-variant px-1">
-            <span>Max Supply:</span>
-            <span class="text-on-surface font-bold">10,000,000 LABU</span>
-          </div>
-        </div>
+        <p class="eyebrow">Chapter 04 / Community rights</p>
+        <h2 id="rightsTitle">One LABUBU.<br><em>Many ways to care.</em></h2>
+        <p>A community relationship should be richer than buying, holding and selling.</p>
       </div>
-      <button id="mintBtn" class="mt-12 w-full py-5 gold-gradient text-on-primary rounded-lg font-bold text-lg flex items-center justify-center space-x-3 hover:shadow-xl hover:shadow-primary/20 transition-all disabled:opacity-50">
-        <span class="material-symbols-outlined">rocket_launch</span>
-        <span>Mint $LABU</span>
-      </button>
-    </div>
+      <div class="rights-list" aria-label="Collectible rights">
+        <div><span>01</span><strong>View</strong><small>Experience the object</small></div>
+        <div><span>02</span><strong>Exhibit</strong><small>Bring it into public culture</small></div>
+        <div><span>03</span><strong>Lend</strong><small>Share custody without losing history</small></div>
+        <div><span>04</span><strong>Govern</strong><small>Shape what happens next</small></div>
+        <div><span>05</span><strong>Transfer</strong><small>Move rights with context intact</small></div>
+        <div><span>06</span><strong>Redeem</strong><small>Reconnect the record and the object</small></div>
+      </div>
+    </section>
 
-    <!-- ===== GOVERNANCE DASHBOARD ===== -->
-    <div id="governance" class="lg:col-span-7 space-y-8">
-      <div class="bg-surface-container-lowest p-10 rounded-xl h-full flex flex-col">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+    <section class="path-section" aria-labelledby="pathTitle">
+      <header class="path-header">
+        <p class="eyebrow">Chapter 05 / The proof</p>
+        <h2 id="pathTitle">From LABUBU to<br>shared stewardship.</h2>
+      </header>
+      <div class="path-grid">
+        <a class="path-card" href="protocol.html#passport">
+          <span>01 / Identify</span>
           <div>
-            <h2 class="font-headline text-4xl font-bold tracking-tight">DAO Proposals</h2>
-            <p class="text-on-surface-variant text-sm mt-1">Shape the future of the vault.</p>
+            <span class="material-symbols-outlined" aria-hidden="true">fingerprint</span>
+            <h3>Passport</h3>
           </div>
-          <div class="flex gap-3">
-            <button id="refreshProposalsBtn" class="px-4 py-3 border-2 border-outline-variant text-on-surface-variant rounded-lg font-bold hover:bg-surface-container-high transition-colors flex items-center space-x-2">
-              <span class="material-symbols-outlined text-sm">refresh</span>
-              <span>Refresh</span>
-            </button>
-            <button id="openCreateProposalBtn" class="px-6 py-3 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary-container/10 transition-colors flex items-center space-x-2">
-              <span class="material-symbols-outlined text-sm">add</span>
-              <span>Create Proposal</span>
-            </button>
+          <b class="material-symbols-outlined" aria-hidden="true">arrow_outward</b>
+        </a>
+        <a class="path-card" href="dao.html">
+          <span>02 / Steward</span>
+          <div>
+            <span class="material-symbols-outlined" aria-hidden="true">how_to_vote</span>
+            <h3>Govern</h3>
           </div>
-        </div>
-
-        <!-- Gov Info -->
-        <div class="grid grid-cols-2 gap-4 mb-6">
-          <div class="bg-surface-container-low rounded-lg p-3 text-center">
-            <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Quorum</span>
-            <p id="govQuorum" class="text-sm font-bold mt-1">-</p>
+          <b class="material-symbols-outlined" aria-hidden="true">arrow_outward</b>
+        </a>
+        <a class="path-card" href="redeem.html">
+          <span>03 / Realize</span>
+          <div>
+            <span class="material-symbols-outlined" aria-hidden="true">package_2</span>
+            <h3>Redeem</h3>
           </div>
-          <div class="bg-surface-container-low rounded-lg p-3 text-center">
-            <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Voting Period</span>
-            <p id="govVotingPeriod" class="text-sm font-bold mt-1">-</p>
-          </div>
-        </div>
-
-        <!-- Proposals list (dynamic) -->
-        <div id="proposalsList" class="space-y-4 flex-1 overflow-y-auto">
-          <div class="flex items-center justify-center h-32 text-on-surface-variant text-sm">
-            Connect wallet to load proposals...
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== DASHBOARD (Contract Info) ==================== -->
-<section id="dashboard" class="px-8 py-16 max-w-screen-2xl mx-auto">
-  <div class="bg-surface-container-lowest rounded-xl p-10">
-    <h2 class="font-headline text-3xl font-bold tracking-tight mb-8">Contract Info</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-surface-container-low rounded-lg p-6">
-        <span class="text-[10px] font-bold text-outline uppercase tracking-widest">$LABU Token (ERC-20)</span>
-        <a href="https://etherscan.io/address/0x45ae2750347DBf7d5bfB421698c1712e87481616" target="_blank" rel="noopener" class="block text-sm font-mono font-bold mt-2 text-primary hover:underline break-all">
-          0x45ae2750347DBf7d5bfB421698c1712e87481616
+          <b class="material-symbols-outlined" aria-hidden="true">arrow_outward</b>
         </a>
       </div>
-      <div class="bg-surface-container-low rounded-lg p-6">
-        <span class="text-[10px] font-bold text-outline uppercase tracking-widest">LABUGovernor (DAO)</span>
-        <a href="https://etherscan.io/address/0xd12c73c1f0b4368498f4315adcd3a53bfb922f8e" target="_blank" rel="noopener" class="block text-sm font-mono font-bold mt-2 text-primary hover:underline break-all">
-          0xd12c73c1f0b4368498f4315adcd3a53bfb922f8e
-        </a>
+    </section>
+
+    <section class="horizon-section" aria-labelledby="horizonTitle">
+      <header>
+        <p class="eyebrow">Chapter 06 / The gift</p>
+        <h2 id="horizonTitle">Prove it here.<br><em>Give it away.</em></h2>
+      </header>
+      <div class="horizon-copy">
+        <p>LABUDAO belongs to LABUBU culture first. That focus gives us a real community, a real object and real responsibilities instead of an abstract promise.</p>
+        <p>If the experiment succeeds, the full protocol and technical foundation will be released as open-source public infrastructure for sports cards, anime figures, goods, Nendoroids, art toys and every collector culture that wants to build its own commons.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== REDEMPTION FLOW ==================== -->
-<section class="px-8 py-32 max-w-screen-2xl mx-auto">
-  <div id="redemptionBox" class="bg-on-background rounded-3xl p-12 lg:p-20 relative overflow-hidden group">
-    <!-- Vanta.js clouds background -->
-    <div id="vantaRedemption" class="absolute inset-0 opacity-40 pointer-events-none" style="border-radius: inherit;"></div>
-    <div class="relative z-10 max-w-2xl">
-      <h2 class="font-headline text-5xl font-extrabold text-white mb-8 tracking-tight">Physical Redemption</h2>
-      <p class="text-zinc-400 text-lg mb-12 leading-relaxed">
-        Ownership isn't just digital. Burn your $LABU tokens to trigger the physical shipment of the underlying asset directly to your door. Our global logistics partner <span class="text-primary-container font-bold">RWA.ltd</span> ensures secure, insured delivery worldwide.
-      </p>
-      <div class="grid md:grid-cols-3 gap-6 mb-12">
-        <div class="space-y-2">
-          <span class="material-symbols-outlined text-primary-container">local_fire_department</span>
-          <h4 class="text-white font-bold">Burn Token</h4>
-          <p class="text-zinc-500 text-xs">Tokens are permanently removed from supply.</p>
-        </div>
-        <div class="space-y-2">
-          <span class="material-symbols-outlined text-primary-container">verified</span>
-          <h4 class="text-white font-bold">KYC &amp; Audit</h4>
-          <p class="text-zinc-500 text-xs">Verification of ownership and shipping details.</p>
-        </div>
-        <div class="space-y-2">
-          <span class="material-symbols-outlined text-primary-container">local_shipping</span>
-          <h4 class="text-white font-bold">Secure Delivery</h4>
-          <p class="text-zinc-500 text-xs">Insured logistics by RWA.ltd global network.</p>
-        </div>
+      <div class="horizon-ledger" aria-label="LABUDAO vision">
+        <div><span>01</span><strong>LABUBU</strong><small>Origin / Community</small></div>
+        <div><span>∞</span><strong>Non-profit</strong><small>Mission / Commitment</small></div>
+        <div><span>OPEN</span><strong>Open source</strong><small>Destination / Public good</small></div>
       </div>
-      <button class="px-8 py-4 bg-white text-on-background rounded-lg font-bold hover:bg-zinc-200 transition-colors">
-        Start Redemption Flow
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== PARTNER BANNER ==================== -->
-<section class="pb-24 px-8 text-center opacity-50">
-  <p class="text-xs font-bold tracking-widest text-outline uppercase mb-8">Supported by</p>
-  <div class="flex justify-center items-center space-x-12 grayscale">
-    <span class="text-2xl font-black text-on-surface">RWA.ltd</span>
-    <span class="text-2xl font-black text-on-surface">HKU FINTECH</span>
-    <span class="text-2xl font-black text-on-surface">WEB3 LAB</span>
-  </div>
-</section>
-
-</main>
-
-<!-- ==================== FOOTER ==================== -->
-<footer class="bg-[#f3f3f3] w-full py-12 px-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-screen-2xl mx-auto items-start">
-    <div class="lg:col-span-1">
-      <div class="font-headline font-bold text-zinc-900 text-xl mb-4">LABUDAO</div>
-      <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
-        The premier decentralized autonomous organization for high-value real world assets and collectibles.
-      </p>
-    </div>
-    <div>
-      <h4 class="text-xs tracking-wide uppercase font-bold mb-6 text-on-surface">Ecosystem</h4>
-      <ul class="space-y-4">
-        <li><a class="text-zinc-500 hover:text-zinc-900 transition-all duration-300 underline underline-offset-4 decoration-[#d5af37]" href="#">Discord</a></li>
-        <li><a class="text-zinc-500 hover:text-zinc-900 transition-all duration-300 underline underline-offset-4 decoration-[#d5af37]" href="#">GitHub</a></li>
-        <li><a class="text-zinc-500 hover:text-zinc-900 transition-all duration-300 underline underline-offset-4 decoration-[#d5af37]" href="#">Docs</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-xs tracking-wide uppercase font-bold mb-6 text-on-surface">Information</h4>
-      <ul class="space-y-4">
-        <li><a class="text-zinc-500 hover:text-zinc-900 transition-all duration-300 underline underline-offset-4 decoration-[#d5af37]" href="#">Legal</a></li>
-        <li><a class="text-zinc-500 hover:text-zinc-900 transition-all duration-300 underline underline-offset-4 decoration-[#d5af37]" href="#">Privacy Policy</a></li>
-        <li><a class="text-zinc-500 hover:text-zinc-900 transition-all duration-300 underline underline-offset-4 decoration-[#d5af37]" href="#">HKU Capstone Notice</a></li>
-      </ul>
-    </div>
-    <div class="lg:col-span-1">
-      <h4 class="text-xs tracking-wide uppercase font-bold mb-6 text-on-surface">Project Status</h4>
-      <div class="p-4 bg-white/50 rounded-lg">
-        <div class="flex items-center space-x-2 text-[#745b00] font-bold text-xs">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          <span>Mainnet Live</span>
-        </div>
-        <p class="text-[10px] text-zinc-400 mt-2 italic">Ethereum Mainnet. HKU Capstone 2024.</p>
+      <div class="horizon-actions">
+        <a class="button button-primary" href="roadmap.html">Read the roadmap <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+        <a class="button button-quiet" href="protocol.html">Inspect the protocol</a>
       </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-mark">
+      <strong>LABU/DAO</strong>
+      <a class="footer-top" href="#hero" aria-label="Back to top">
+        <span class="material-symbols-outlined" aria-hidden="true">north_east</span>
+      </a>
     </div>
+    <div class="footer-grid">
+      <div class="footer-network"><i aria-hidden="true"></i>Ethereum Mainnet</div>
+      <nav aria-label="Footer navigation">
+        <a href="protocol.html">Protocol</a>
+        <a href="dao.html">Governance</a>
+        <a href="redeem.html">Redeem</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="https://github.com/0xEryx/LABUDAO" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </nav>
+      <span>HKU Capstone × RWA.ltd</span>
+    </div>
+    <p class="footer-note">Independent community initiative. No official affiliation with or endorsement by POP MART or the owners of the LABUBU brand is implied.</p>
+  </footer>
+
+  <div class="member-pass-modal" id="memberPassModal" hidden>
+    <button class="member-pass-backdrop" type="button" data-close-pass aria-label="Dismiss member pass"></button>
+    <section class="member-pass-dialog" role="dialog" aria-modal="true" aria-label="LABUDAO physical rights member pass">
+      <button class="member-pass-close" type="button" data-close-pass aria-label="Close member pass">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m5 5 14 14M19 5 5 19"></path>
+        </svg>
+      </button>
+      <iframe
+        id="memberPassFrame"
+        title="LABUDAO interactive member pass"
+        data-src="pass/index.html"
+        allow="webgl"
+      ></iframe>
+    </section>
   </div>
-  <div class="max-w-screen-2xl mx-auto mt-16 pt-8 border-t border-zinc-200">
-    <p class="text-zinc-400 text-[10px] uppercase tracking-widest text-center">
-      &copy; 2024 LABUDAO. HKU Capstone Project &times; RWA.ltd. All rights reserved.
-    </p>
-  </div>
-</footer>
 
-<!-- ==================== CREATE PROPOSAL MODAL ==================== -->
-<div id="proposalModal" class="modal-backdrop">
-  <div class="modal-panel">
-    <div class="flex justify-between items-center mb-6">
-      <h3 class="font-headline text-2xl font-bold">Create Proposal</h3>
-      <button id="closeModalBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-    </div>
-    <div class="space-y-5">
-      <div>
-        <label class="block text-xs font-bold text-outline uppercase tracking-widest mb-2">Target Address</label>
-        <input id="propTarget" class="w-full border border-outline-variant rounded-lg p-3 text-sm focus:border-primary focus:ring-0 transition-colors" type="text" placeholder="0x..."/>
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-outline uppercase tracking-widest mb-2">Value (ETH)</label>
-        <input id="propValue" class="w-full border border-outline-variant rounded-lg p-3 text-sm focus:border-primary focus:ring-0 transition-colors" type="number" min="0" step="0.001" value="0"/>
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-outline uppercase tracking-widest mb-2">Calldata (hex, optional)</label>
-        <input id="propCalldata" class="w-full border border-outline-variant rounded-lg p-3 text-sm font-mono focus:border-primary focus:ring-0 transition-colors" type="text" value="0x" placeholder="0x"/>
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-outline uppercase tracking-widest mb-2">Description</label>
-        <textarea id="propDescription" class="w-full border border-outline-variant rounded-lg p-3 text-sm focus:border-primary focus:ring-0 transition-colors min-h-[100px]" placeholder="Describe your proposal..."></textarea>
-      </div>
-      <button id="submitProposalBtn" class="w-full py-4 gold-gradient text-on-primary rounded-lg font-bold text-base flex items-center justify-center space-x-2 hover:shadow-xl hover:shadow-primary/20 transition-all disabled:opacity-50">
-        <span class="material-symbols-outlined text-sm">send</span>
-        <span>Submit Proposal</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ==================== VOTE MODAL ==================== -->
-<div id="voteModal" class="modal-backdrop">
-  <div class="modal-panel">
-    <div class="flex justify-between items-center mb-6">
-      <h3 class="font-headline text-2xl font-bold">Cast Vote — Proposal #<span id="voteModalId">0</span></h3>
-      <button id="closeVoteModalBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-    </div>
-    <p id="voteModalDesc" class="text-on-surface-variant mb-6 text-sm leading-relaxed"></p>
-    <div class="flex gap-3">
-      <button class="vote-action-btn flex-1 py-4 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition-colors" data-support="1">
-        <span class="material-symbols-outlined text-sm align-middle mr-1">thumb_up</span> For
-      </button>
-      <button class="vote-action-btn flex-1 py-4 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition-colors" data-support="0">
-        <span class="material-symbols-outlined text-sm align-middle mr-1">thumb_down</span> Against
-      </button>
-      <button class="vote-action-btn flex-1 py-4 bg-zinc-400 text-white rounded-lg font-bold hover:bg-zinc-500 transition-colors" data-support="2">
-        <span class="material-symbols-outlined text-sm align-middle mr-1">do_not_disturb_on</span> Abstain
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ==================== TOAST ==================== -->
-<div id="toast"></div>
-
-<!-- ==================== JS ==================== -->
-<script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
-<script>
-/* ============================================================
-   LABUDAO  –  Web3 Integration  (ethers v6, inline)
-   ============================================================ */
-
-// ---- Contracts ----
-const TOKEN_ADDR = "0x45ae2750347DBf7d5bfB421698c1712e87481616";
-const GOV_ADDR   = "0xd12c73c1f0b4368498f4315adcd3a53bfb922f8e";
-
-const TOKEN_ABI = [
-  "function freeMint(uint256 amount) external returns (bool)",
-  "function balanceOf(address) view returns (uint256)",
-  "function totalSupply() view returns (uint256)",
-  "function MAX_SUPPLY() view returns (uint256)",
-];
-
-const GOV_ABI = [
-  "function propose(address target, uint256 value, bytes data, string description) external returns (uint256)",
-  "function castVote(uint256 proposalId, uint8 support) external returns (uint256)",
-  "function execute(uint256 proposalId) external",
-  "function proposalCount() view returns (uint256)",
-  "function getProposal(uint256 id) view returns (tuple(address proposer, address target, uint256 value, bytes data, string description, uint256 startBlock, uint256 endBlock, uint256 forVotes, uint256 againstVotes, uint256 abstainVotes, bool executed))",
-  "function state(uint256 id) view returns (uint8)",
-  "function quorum() view returns (uint256)",
-  "function votingPeriod() view returns (uint256)",
-  "function hasVoted(uint256 id, address voter) view returns (bool)",
-];
-
-const STATE_MAP  = ["Invalid","Active","Succeeded","Defeated","Executed"];
-const STATE_STYLE = [
-  "bg-zinc-200 text-zinc-600",
-  "bg-green-100 text-green-700",
-  "bg-blue-100 text-blue-700",
-  "bg-red-100 text-red-600",
-  "bg-zinc-300 text-zinc-700",
-];
-
-// ---- State ----
-let provider, signer, token, governor, userAddr;
-
-// ---- Helpers ----
-const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
-const trunc = a => a.slice(0,6)+"..."+a.slice(-4);
-const fmt = (w, d=18) => parseFloat(ethers.formatUnits(w,d)).toLocaleString("en-US",{maximumFractionDigits:2});
-
-function toast(msg, type="info", ms=4000) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.className = "show " + type;
-  clearTimeout(t._tid);
-  t._tid = setTimeout(() => t.className = "", ms);
-}
-
-function escHtml(s) { const d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
-
-// ---- Wallet ----
-async function connectWallet() {
-  if (!window.ethereum) { toast("Please install MetaMask or another Web3 wallet.", "error"); return; }
-  try {
-    provider = new ethers.BrowserProvider(window.ethereum);
-    const accts = await provider.send("eth_requestAccounts", []);
-    signer   = await provider.getSigner();
-    userAddr = accts[0];
-    token    = new ethers.Contract(TOKEN_ADDR, TOKEN_ABI, signer);
-    governor = new ethers.Contract(GOV_ADDR, GOV_ABI, signer);
-
-    $("#connectLabel").textContent = trunc(userAddr);
-    $("#walletCard").classList.remove("hidden");
-    $("#walletCard").classList.add("grid");
-
-    await refreshInfo();
-    await loadGovernanceInfo();
-    await loadProposals();
-    toast("Wallet connected!", "success");
-  } catch(e) {
-    console.error(e);
-    toast("Connection failed: " + (e.message||e), "error");
-  }
-}
-
-async function refreshInfo() {
-  if (!token || !userAddr) return;
-  try {
-    const [bal, supply, net] = await Promise.all([
-      token.balanceOf(userAddr), token.totalSupply(), provider.getNetwork()
-    ]);
-    const b = fmt(bal), s = fmt(supply);
-    $("#walletAddr").textContent     = trunc(userAddr);
-    $("#walletNetwork").textContent  = Number(net.chainId)===1 ? "Ethereum Mainnet" : "Chain "+net.chainId;
-    $("#walletBalance").textContent  = b + " LABU";
-    $("#statTotalSupply").textContent = s + " / 10M";
-    $("#statYourBalance").textContent = b + " LABU";
-  } catch(e) { console.error(e); }
-}
-
-// ---- Mint ----
-async function handleMint() {
-  if (!signer) { toast("Connect wallet first.", "error"); return; }
-  const amt = parseInt($("#mintAmount").value, 10);
-  if (!amt || amt <= 0) { toast("Enter a valid amount.", "error"); return; }
-  const btn = $("#mintBtn");
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span><span class="ml-2">Sending...</span>';
-  try {
-    const tx = await token.freeMint(amt);
-    toast("Tx sent: " + trunc(tx.hash) + " — confirming...", "info", 10000);
-    await tx.wait();
-    toast("Minted " + amt.toLocaleString() + " LABU!", "success");
-    await refreshInfo();
-  } catch(e) {
-    console.error(e);
-    toast(e.reason || e.message || "Mint failed", "error");
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<span class="material-symbols-outlined">rocket_launch</span><span>Mint $LABU</span>';
-  }
-}
-
-// ---- Governance info ----
-async function loadGovernanceInfo() {
-  if (!governor) return;
-  try {
-    const [q, vp] = await Promise.all([governor.quorum(), governor.votingPeriod()]);
-    $("#govQuorum").textContent = fmt(q) + " LABU";
-    $("#govVotingPeriod").textContent = vp.toString() + " blocks";
-  } catch(e) { console.error(e); }
-}
-
-// ---- Proposals ----
-async function loadProposals() {
-  if (!governor) return;
-  const list = $("#proposalsList");
-  list.innerHTML = '<div class="flex items-center justify-center h-20 text-on-surface-variant text-sm"><span class="spinner mr-2"></span> Loading proposals...</div>';
-
-  try {
-    const count = Number(await governor.proposalCount());
-    if (count === 0) {
-      list.innerHTML = '<div class="flex flex-col items-center justify-center h-32 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-3xl mb-2 opacity-40">how_to_vote</span>No proposals yet. Be the first!</div>';
-      return;
-    }
-    list.innerHTML = "";
-    const start = Math.max(0, count - 10);
-    for (let i = count - 1; i >= start; i--) {
-      const [p, st] = await Promise.all([governor.getProposal(i), governor.state(i)]);
-      const sn = Number(st);
-      const totalVotes = BigInt(p.forVotes) + BigInt(p.againstVotes) + BigInt(p.abstainVotes);
-      let forPct = 0, againstPct = 0, abstainPct = 0;
-      if (totalVotes > 0n) {
-        forPct     = Number(BigInt(p.forVotes)     * 100n / totalVotes);
-        againstPct = Number(BigInt(p.againstVotes) * 100n / totalVotes);
-        abstainPct = 100 - forPct - againstPct;
-      }
-
-      const card = document.createElement("div");
-      card.className = "p-6 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-colors group";
-      if (sn >= 3) card.classList.add("opacity-70");
-
-      card.innerHTML = `
-        <div class="flex justify-between items-start mb-3">
-          <h3 class="font-bold text-lg text-on-surface group-hover:text-primary transition-colors">
-            <span class="text-outline font-mono mr-1">#${i}</span>
-            ${escHtml(p.description).substring(0, 120)}${p.description.length > 120 ? '...' : ''}
-          </h3>
-          <span class="px-3 py-1 ${STATE_STYLE[sn]||STATE_STYLE[0]} text-[10px] font-bold rounded-full uppercase tracking-tighter whitespace-nowrap ml-3">
-            ${STATE_MAP[sn]||"Unknown"}
-          </span>
-        </div>
-        <div class="flex gap-4 text-[11px] text-outline mb-4">
-          <span>Proposer: ${trunc(p.proposer)}</span>
-          <span>Target: ${trunc(p.target)}</span>
-          <span>Blocks: ${p.startBlock.toString()}-${p.endBlock.toString()}</span>
-        </div>
-        <div class="vote-progress mb-2">
-          <div class="bar-for" style="width:${forPct}%"></div>
-          <div class="bar-against" style="width:${againstPct}%"></div>
-          <div class="bar-abstain" style="width:${abstainPct}%"></div>
-        </div>
-        <div class="flex justify-between text-[10px] font-bold text-outline mb-4">
-          <span class="text-green-600">For: ${fmt(p.forVotes)} (${forPct}%)</span>
-          <span class="text-red-500">Against: ${fmt(p.againstVotes)} (${againstPct}%)</span>
-          <span class="text-zinc-400">Abstain: ${fmt(p.abstainVotes)} (${abstainPct}%)</span>
-        </div>
-        <div class="flex gap-3">
-          ${sn === 1 ? `<button class="vote-open-btn flex-1 py-2 bg-on-background text-white rounded font-bold text-sm hover:opacity-90 transition-opacity" data-id="${i}" data-desc="${escHtml(p.description)}">Vote</button>` : ""}
-          ${sn === 2 ? `<button class="execute-btn flex-1 py-2 gold-gradient text-on-primary rounded font-bold text-sm hover:opacity-90 transition-opacity" data-id="${i}">Execute</button>` : ""}
-        </div>
-      `;
-      list.appendChild(card);
-    }
-    attachProposalHandlers();
-  } catch(e) {
-    console.error(e);
-    list.innerHTML = '<div class="text-center text-red-500 text-sm py-8">Failed to load proposals.</div>';
-  }
-}
-
-function attachProposalHandlers() {
-  // Vote modal openers
-  $$(".vote-open-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      $("#voteModalId").textContent = btn.dataset.id;
-      $("#voteModalDesc").textContent = btn.dataset.desc;
-      $("#voteModal").classList.add("open");
-    });
-  });
-  // Execute buttons
-  $$(".execute-btn").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      if (!signer) { toast("Connect wallet first.", "error"); return; }
-      const id = parseInt(btn.dataset.id);
-      btn.disabled = true; btn.textContent = "Executing...";
-      try {
-        const tx = await governor.execute(id);
-        toast("Executing proposal #" + id + "...", "info", 10000);
-        await tx.wait();
-        toast("Proposal #" + id + " executed!", "success");
-        await loadProposals();
-      } catch(e) {
-        toast(e.reason || e.message || "Execution failed", "error");
-        btn.disabled = false; btn.textContent = "Execute";
-      }
-    });
-  });
-}
-
-// ---- Vote ----
-async function handleVote(proposalId, support) {
-  if (!signer) { toast("Connect wallet first.", "error"); return; }
-  const labels = ["Against","For","Abstain"];
-  toast("Casting vote (" + labels[support] + ")...", "info", 10000);
-  try {
-    const tx = await governor.castVote(proposalId, support);
-    await tx.wait();
-    toast("Vote cast: " + labels[support] + "!", "success");
-    $("#voteModal").classList.remove("open");
-    await loadProposals();
-  } catch(e) {
-    toast(e.reason || e.message || "Vote failed", "error");
-  }
-}
-
-// ---- Create Proposal ----
-async function handlePropose() {
-  if (!signer) { toast("Connect wallet first.", "error"); return; }
-  const target = $("#propTarget").value.trim();
-  const valueEth = $("#propValue").value || "0";
-  const calldata = $("#propCalldata").value.trim() || "0x";
-  const desc = $("#propDescription").value.trim();
-
-  if (!ethers.isAddress(target)) { toast("Invalid target address.", "error"); return; }
-  if (!desc) { toast("Please enter a description.", "error"); return; }
-
-  const btn = $("#submitProposalBtn");
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span><span class="ml-2">Submitting...</span>';
-  try {
-    const tx = await governor.propose(target, ethers.parseEther(valueEth), calldata, desc);
-    toast("Proposal tx sent: " + trunc(tx.hash), "info", 10000);
-    await tx.wait();
-    toast("Proposal created!", "success");
-    $("#proposalModal").classList.remove("open");
-    $("#propTarget").value = ""; $("#propValue").value = "0";
-    $("#propCalldata").value = "0x"; $("#propDescription").value = "";
-    await loadProposals();
-  } catch(e) {
-    toast(e.reason || e.message || "Proposal failed", "error");
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<span class="material-symbols-outlined text-sm">send</span><span>Submit Proposal</span>';
-  }
-}
-
-// ---- Event listeners ----
-document.addEventListener("DOMContentLoaded", () => {
-  // Wallet
-  $("#connectBtn").addEventListener("click", connectWallet);
-
-  // Mint
-  $("#mintBtn").addEventListener("click", handleMint);
-
-  // Proposals refresh
-  $("#refreshProposalsBtn").addEventListener("click", loadProposals);
-
-  // Create proposal modal
-  $("#openCreateProposalBtn").addEventListener("click", () => {
-    if (!signer) { toast("Connect wallet first.", "error"); return; }
-    $("#proposalModal").classList.add("open");
-  });
-  $("#closeModalBtn").addEventListener("click", () => $("#proposalModal").classList.remove("open"));
-  $("#submitProposalBtn").addEventListener("click", handlePropose);
-
-  // Vote modal
-  $("#closeVoteModalBtn").addEventListener("click", () => $("#voteModal").classList.remove("open"));
-  $$(".vote-action-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const pid = parseInt($("#voteModalId").textContent);
-      const sup = parseInt(btn.dataset.support);
-      handleVote(pid, sup);
-    });
-  });
-
-  // Close modals on backdrop click
-  ["proposalModal","voteModal"].forEach(id => {
-    $("#"+id).addEventListener("click", e => {
-      if (e.target.id === id) $("#"+id).classList.remove("open");
-    });
-  });
-
-  // Nav scroll shadow
-  window.addEventListener("scroll", () => {
-    $("#topNav").classList.toggle("scrolled", window.scrollY > 10);
-  });
-
-  // Vanta.js clouds for Redemption section
-  if (typeof VANTA !== "undefined" && typeof THREE !== "undefined") {
-    VANTA.CLOUDS({
-      el: "#vantaRedemption",
-      THREE: THREE,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200,
-      minWidth: 200,
-      skyColor: 0x111111,
-      cloudColor: 0x3a3225,
-      cloudShadowColor: 0x1a1a1a,
-      sunColor: 0xd5af37,
-      sunGlareColor: 0x745b00,
-      sunlightColor: 0x4a3d1a,
-      speed: 0.6,
-    });
-  }
-
-  // Account / chain listeners
-  if (window.ethereum) {
-    window.ethereum.on("accountsChanged", accts => {
-      if (accts.length === 0) { location.reload(); return; }
-      userAddr = accts[0]; refreshInfo(); loadProposals();
-    });
-    window.ethereum.on("chainChanged", () => location.reload());
-
-    // Auto-connect if already authorized
-    window.ethereum.request({ method: "eth_accounts" }).then(accts => {
-      if (accts.length > 0) connectWallet();
-    });
-  }
-});
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

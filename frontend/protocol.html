@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070806">
+  <meta name="description" content="The LABUDAO protocol: built first for the LABUBU community, designed to become open-source public infrastructure after the complete loop is proven.">
+  <title>Protocol — LABUDAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="protocol">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="LABUDAO home">LABU<span>/DAO</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a class="active" href="protocol.html">Protocol</a><a href="dao.html">Governance</a><a href="redeem.html">Redeem</a><a href="roadmap.html">Roadmap</a>
+    </nav>
+    <button class="button button-wallet" id="connectBtn" type="button"><span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>Connect</button>
+  </header>
+
+  <main class="page-main protocol-main" id="main">
+    <header class="page-intro protocol-intro">
+      <p class="eyebrow">LABUBU-first / Open-source future</p>
+      <h1>Built here.<br><em>Opened to all.</em></h1>
+      <p>A complete stewardship loop, proven by one community.</p>
+    </header>
+
+    <section class="protocol-status" aria-label="Protocol status">
+      <div><span>Origin</span><strong>LABUBU Community</strong></div>
+      <div><span>Mission</span><strong>Non-profit public good</strong></div>
+      <div><span>Destination</span><strong>Open-source protocol</strong></div>
+    </section>
+
+    <section class="protocol-section" aria-labelledby="lifecycleTitle">
+      <header class="protocol-heading">
+        <p class="eyebrow">Collectible lifecycle</p>
+        <h2 id="lifecycleTitle">Four states.<br>One source of truth.</h2>
+      </header>
+      <div class="lifecycle-grid">
+        <article class="protocol-step" id="passport">
+          <span>01 / Register</span>
+          <i class="material-symbols-outlined" aria-hidden="true">fingerprint</i>
+          <h3>Passport</h3>
+          <p>Origin, attributes and rights in a persistent onchain record.</p>
+          <small>Proposed</small>
+        </article>
+        <article class="protocol-step">
+          <span>02 / Verify</span>
+          <i class="material-symbols-outlined" aria-hidden="true">verified_user</i>
+          <h3>Custody</h3>
+          <p>Attest who safeguards the physical object and where it exists.</p>
+          <small>Proposed</small>
+        </article>
+        <article class="protocol-step">
+          <span>03 / Steward</span>
+          <i class="material-symbols-outlined" aria-hidden="true">how_to_vote</i>
+          <h3>Govern</h3>
+          <p>Communities decide exhibition, transfer and access rights.</p>
+          <small>Pilot live</small>
+        </article>
+        <article class="protocol-step" id="redeem">
+          <span>04 / Realize</span>
+          <i class="material-symbols-outlined" aria-hidden="true">package_2</i>
+          <h3>Redeem</h3>
+          <p>Close the loop with verified delivery or a recorded transfer.</p>
+          <small>Proposed</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="protocol-roles" aria-labelledby="rolesTitle">
+      <div>
+        <p class="eyebrow">Built by a community</p>
+        <h2 id="rolesTitle">LABUBU-first<br>by design.</h2>
+      </div>
+      <div class="role-list">
+        <div><span>01</span><strong>Collectors</strong><small>Protect objects + stories</small></div>
+        <div><span>02</span><strong>Custodians</strong><small>Verify physical truth</small></div>
+        <div><span>03</span><strong>Contributors</strong><small>Build programs + tools</small></div>
+        <div><span>04</span><strong>Community</strong><small>Govern the shared mission</small></div>
+      </div>
+    </section>
+
+    <section class="protocol-pilot">
+      <div>
+        <p class="eyebrow">Our discipline</p>
+        <h2>Do not generalize<br><em>before it works.</em></h2>
+      </div>
+      <div>
+        <p>The live token and governor test participation. The next proof is one LABUBU completing Passport → Custody → Governance → verified Redemption. Only then do we earn the right to release a general protocol.</p>
+        <a class="button button-primary" href="roadmap.html">Read the roadmap <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+      </div>
+    </section>
+
+    <div class="page-next"><span>Continue</span><a href="dao.html">Enter LABUBU governance <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div>
+  </main>
+  <footer class="compact-footer"><span>© 2026 LABUDAO</span><a href="index.html">Overview</a></footer>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

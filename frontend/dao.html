@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070806">
+  <meta name="description" content="Participate in the Labubu pilot, propose decisions, vote and review governance activity in one place.">
+  <title>Governance — LABUDAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="dao">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html">LABU<span>/DAO</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a href="protocol.html">Protocol</a><a class="active" href="dao.html">Governance</a><a href="redeem.html">Redeem</a><a href="roadmap.html">Roadmap</a>
+    </nav>
+    <button class="button button-wallet" id="connectBtn" type="button"><span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>Connect</button>
+  </header>
+
+  <main class="page-main governance-main" id="main">
+    <header class="page-intro governance-intro">
+      <p class="eyebrow">Labubu / Pilot governance</p>
+      <h1>One place to<br><em>shape the pilot.</em></h1>
+      <p>Participate. Propose. Vote. Review.</p>
+    </header>
+
+    <nav class="governance-index" aria-label="Governance sections">
+      <a href="#participation"><span>01</span>Participate</a>
+      <a href="#proposals"><span>02</span>Proposals</a>
+      <a href="#activity"><span>03</span>Activity</a>
+    </nav>
+
+    <section class="governance-section" id="participation" aria-labelledby="participationTitle">
+      <header class="governance-section-head">
+        <p class="eyebrow">01 / Participate</p>
+        <div>
+          <h2 id="participationTitle">Enter the<br>proving ground.</h2>
+          <p>Mint the live participation token used by the current Labubu governance prototype.</p>
+        </div>
+      </header>
+
+      <aside class="pilot-notice" aria-label="Pilot status">
+        <span>Current scope</span>
+        <strong>$LABU token + prototype governance</strong>
+        <small>It is not ownership of a specific physical collectible.</small>
+      </aside>
+
+      <div class="action-layout" aria-label="Mint LABU">
+        <form class="terminal-form mint-form" onsubmit="return false">
+          <label for="mintAmount">Amount</label>
+          <div class="amount-field">
+            <input id="mintAmount" type="number" value="100" min="1" step="1" inputmode="numeric">
+            <span>$LABU</span>
+          </div>
+          <div class="form-readout">
+            <div><span>Current supply</span><strong id="mintTotalSupply">— LABU</strong></div>
+            <div><span>Your balance</span><strong id="mintYourBalance">— LABU</strong></div>
+          </div>
+          <button class="button button-primary button-full" id="mintBtn" type="button">Mint on Ethereum</button>
+          <p class="tx-status" id="mintStatus" role="status"></p>
+        </form>
+
+        <div class="contract-ledger">
+          <div class="ledger-title"><span>Contract</span><i><b></b>Mainnet live</i></div>
+          <dl>
+            <div><dt>Asset</dt><dd>$LABU / ERC-20</dd></div>
+            <div><dt>Contract</dt><dd><a href="https://etherscan.io/address/0x45ae2750347DBf7d5bfB421698c1712e87481616" target="_blank" rel="noreferrer">0x45ae…1616 ↗</a></dd></div>
+            <div><dt>Max supply</dt><dd>10,000,000</dd></div>
+            <div><dt>Access</dt><dd>Permissionless</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="governance-section" id="proposals" aria-labelledby="proposalsTitle">
+      <header class="governance-section-head">
+        <p class="eyebrow">02 / Proposals</p>
+        <div>
+          <h2 id="proposalsTitle">Turn intent<br>into a decision.</h2>
+          <p>Create a proposal or cast a token-weighted vote through the deployed pilot governor.</p>
+        </div>
+      </header>
+
+      <div class="governance-stats" aria-label="Governance statistics">
+        <div><span>Quorum</span><strong id="quorumDisplay">Connect to load</strong></div>
+        <div><span>Voting period</span><strong id="votingPeriodDisplay">Connect to load</strong></div>
+        <div><span>Governor</span><strong><a href="https://etherscan.io/address/0xd12c73c1f0b4368498f4315adcd3a53bfb922f8e" target="_blank" rel="noreferrer">0xd12c…2f8e ↗</a></strong></div>
+      </div>
+
+      <div class="governance-tools">
+        <form class="terminal-form proposal-form" onsubmit="return false">
+          <div class="form-heading"><span class="material-symbols-outlined" aria-hidden="true">edit_note</span><h3>Create proposal</h3></div>
+          <label for="proposalTarget">Target address</label>
+          <input id="proposalTarget" type="text" placeholder="0x…" autocomplete="off" spellcheck="false">
+          <div class="form-columns">
+            <label>ETH value<input id="proposalValue" type="number" value="0" min="0" step="0.0001"></label>
+            <label>Calldata<input id="proposalCalldata" type="text" value="0x" spellcheck="false"></label>
+          </div>
+          <label for="proposalDescription">Description</label>
+          <textarea id="proposalDescription" rows="4" placeholder="What should the DAO do?"></textarea>
+          <button class="button button-primary button-full" id="createProposalBtn" type="button">Submit proposal</button>
+          <p class="tx-status" id="proposeStatus" role="status"></p>
+        </form>
+
+        <form class="terminal-form vote-form" onsubmit="return false">
+          <div class="form-heading"><span class="material-symbols-outlined" aria-hidden="true">how_to_vote</span><h3>Cast vote</h3></div>
+          <label for="voteProposalId">Proposal ID</label>
+          <input id="voteProposalId" type="number" min="0" step="1" placeholder="0">
+          <div class="vote-actions">
+            <button class="vote-button vote-for" data-vote="1" type="button">For</button>
+            <button class="vote-button vote-against" data-vote="0" type="button">Against</button>
+            <button class="vote-button vote-abstain" data-vote="2" type="button">Abstain</button>
+          </div>
+          <p class="tx-status" id="voteStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="governance-section governance-activity" id="activity" aria-labelledby="activityTitle">
+      <header class="governance-section-head">
+        <p class="eyebrow">03 / Activity</p>
+        <div>
+          <h2 id="activityTitle">The pilot<br>in motion.</h2>
+          <p>Review the latest proposals and outcomes recorded by the governor.</p>
+          <button class="button button-quiet" id="refreshProposalsBtn" type="button"><span class="material-symbols-outlined" aria-hidden="true">refresh</span>Refresh activity</button>
+        </div>
+      </header>
+
+      <div class="dashboard-section">
+        <div class="proposal-table-head"><span>Proposal</span><span>Votes</span><span>Status</span></div>
+        <div class="proposals-list" id="proposalsList"><p class="muted-text">Connect a wallet to load proposals.</p></div>
+      </div>
+    </section>
+
+    <div class="page-next"><span>Continue</span><a href="redeem.html">Preview redemption <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div>
+  </main>
+  <footer class="compact-footer"><span>© 2026 LABUDAO</span><a href="protocol.html">Protocol</a></footer>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
