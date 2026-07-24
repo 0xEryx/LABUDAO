@@ -30,7 +30,7 @@ const GOV_ABI = [
 ];
 
 const STATE_LABELS = ["Invalid", "Active", "Succeeded", "Defeated", "Executed"];
-const STATE_COLORS = ["#999", "#ff9bb7", "#4caf50", "#e57373", "#90a4ae"];
+const STATE_COLORS = ["#8c8a84", "#9bacc0", "#aeb8c4", "#b9827f", "#e6e8eb"];
 
 // ---- Global state ----
 let provider = null;
@@ -42,6 +42,11 @@ let userAddr = null;
 // ---- DOM helpers ----
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
+
+function setText(sel, value) {
+  const el = $(sel);
+  if (el) el.textContent = value;
+}
 
 function truncAddr(addr) {
   return addr.slice(0, 6) + "..." + addr.slice(-4);
@@ -65,27 +70,6 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-// ---- Vanta background ----
-function initVanta() {
-  if (typeof VANTA === "undefined" || typeof THREE === "undefined") return;
-  VANTA.CLOUDS({
-    el: "#vanta-bg",
-    THREE: THREE,
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    skyColor: 0xf0e8ff,
-    cloudColor: 0xffd6e7,
-    cloudShadowColor: 0xeabfcf,
-    sunColor: 0xff9bb7,
-    sunGlareColor: 0xffd2df,
-    sunlightColor: 0xfff0f5,
-    speed: 0.8,
-  });
-}
-
 // ---- Wallet ----
 async function connectWallet() {
   if (!window.ethereum) {
@@ -102,8 +86,9 @@ async function connectWallet() {
     token    = new ethers.Contract(TOKEN_ADDR, TOKEN_ABI, signer);
     governor = new ethers.Contract(GOV_ADDR, GOV_ABI, signer);
 
-    $("#connectBtn").textContent = truncAddr(userAddr);
-    $("#connectBtn").classList.add("connected");
+    setText("#connectBtn", truncAddr(userAddr));
+    $("#connectBtn")?.classList.add("connected");
+    setText("#heroConnectBtn", "Wallet connected");
 
     await refreshWalletInfo();
     await loadProposals();
@@ -127,13 +112,15 @@ async function refreshWalletInfo() {
     const balStr = fmt(balance);
     const supStr = fmt(supply);
 
-    $("#walletAddress").textContent = truncAddr(userAddr);
-    $("#walletNetwork").textContent =
-      Number(network.chainId) === 1 ? "Ethereum" : "Chain " + network.chainId;
-    $("#labuBalance").textContent = balStr + " LABU";
-    $("#totalSupplyDisplay").textContent = supStr;
-    $("#mintTotalSupply").textContent = supStr + " LABU";
-    $("#mintYourBalance").textContent = balStr + " LABU";
+    setText("#walletAddress", truncAddr(userAddr));
+    setText(
+      "#walletNetwork",
+      Number(network.chainId) === 1 ? "Ethereum" : "Chain " + network.chainId
+    );
+    setText("#labuBalance", balStr + " LABU");
+    setText("#totalSupplyDisplay", supStr);
+    setText("#mintTotalSupply", supStr + " LABU");
+    setText("#mintYourBalance", balStr + " LABU");
   } catch (err) {
     console.error("Failed to refresh wallet info:", err);
   }
@@ -173,7 +160,7 @@ async function handleMint() {
 
 // ---- Governance ----
 async function loadGovernanceInfo() {
-  if (!governor) return;
+  if (!governor || !$("#quorumDisplay")) return;
   try {
     const [q, vp] = await Promise.all([
       governor.quorum(),
@@ -189,6 +176,7 @@ async function loadGovernanceInfo() {
 async function loadProposals() {
   if (!governor) return;
   const listEl = $("#proposalsList");
+  if (!listEl) return;
 
   try {
     const count = await governor.proposalCount();
@@ -342,6 +330,28 @@ function initScrollButtons() {
   });
 }
 
+// ---- Responsive navigation ----
+function initNavigation() {
+  const toggle = $(".nav-toggle");
+  const nav = $("#primaryNav");
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    toggle.setAttribute("aria-label", open ? "Open navigation" : "Close navigation");
+    nav.classList.toggle("open", !open);
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation");
+      nav.classList.remove("open");
+    });
+  });
+}
+
 // ---- Account / chain change listeners ----
 function initListeners() {
   if (!window.ethereum) return;
@@ -349,8 +359,9 @@ function initListeners() {
   window.ethereum.on("accountsChanged", (accounts) => {
     if (accounts.length === 0) {
       userAddr = null;
-      $("#connectBtn").textContent = "Connect Wallet";
-      $("#connectBtn").classList.remove("connected");
+      setText("#connectBtn", "Connect");
+      $("#connectBtn")?.classList.remove("connected");
+      setText("#heroConnectBtn", "Connect & mint");
       return;
     }
     userAddr = accounts[0];
@@ -365,19 +376,23 @@ function initListeners() {
 
 // ---- Init ----
 document.addEventListener("DOMContentLoaded", () => {
-  initVanta();
   initScrollButtons();
+  initNavigation();
   initListeners();
 
   // Wallet
-  $("#connectBtn").addEventListener("click", connectWallet);
+  $("#connectBtn")?.addEventListener("click", connectWallet);
+  $("#heroConnectBtn")?.addEventListener("click", async () => {
+    await connectWallet();
+    if (userAddr) window.location.href = "mint.html";
+  });
 
   // Mint
-  $("#mintBtn").addEventListener("click", handleMint);
+  $("#mintBtn")?.addEventListener("click", handleMint);
 
   // Governance
-  $("#createProposalBtn").addEventListener("click", handlePropose);
-  $("#refreshProposalsBtn").addEventListener("click", loadProposals);
+  $("#createProposalBtn")?.addEventListener("click", handlePropose);
+  $("#refreshProposalsBtn")?.addEventListener("click", loadProposals);
 
   // Vote buttons
   $$("[data-vote]").forEach((btn) => {

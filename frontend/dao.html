@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070806">
+  <title>Governance — LABUDAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="dao">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html">LABU<span>/DAO</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a href="protocol.html">Protocol</a><a href="mint.html">Pilot</a><a class="active" href="dao.html">Governance</a><a href="dashboard.html">Activity</a>
+    </nav>
+    <button class="button button-wallet" id="connectBtn" type="button"><span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>Connect</button>
+  </header>
+
+  <main class="page-main" id="main">
+    <header class="page-intro">
+      <p class="eyebrow">Labubu / Pilot governance</p>
+      <h1>Govern the <em>pilot.</em></h1>
+      <p>Propose. Vote. Execute.</p>
+    </header>
+
+    <section class="governance-stats" aria-label="Governance statistics">
+      <div><span>Quorum</span><strong id="quorumDisplay">Connect to load</strong></div>
+      <div><span>Voting period</span><strong id="votingPeriodDisplay">Connect to load</strong></div>
+      <div><span>Governor</span><strong><a href="https://etherscan.io/address/0xd12c73c1f0b4368498f4315adcd3a53bfb922f8e" target="_blank" rel="noreferrer">0xd12c…2f8e ↗</a></strong></div>
+    </section>
+
+    <section class="governance-tools">
+      <form class="terminal-form proposal-form" onsubmit="return false">
+        <div class="form-heading"><span class="material-symbols-outlined" aria-hidden="true">edit_note</span><h2>Create proposal</h2></div>
+        <label for="proposalTarget">Target address</label>
+        <input id="proposalTarget" type="text" placeholder="0x…" autocomplete="off" spellcheck="false">
+        <div class="form-columns">
+          <label>ETH value<input id="proposalValue" type="number" value="0" min="0" step="0.0001"></label>
+          <label>Calldata<input id="proposalCalldata" type="text" value="0x" spellcheck="false"></label>
+        </div>
+        <label for="proposalDescription">Description</label>
+        <textarea id="proposalDescription" rows="4" placeholder="What should the DAO do?"></textarea>
+        <button class="button button-primary button-full" id="createProposalBtn" type="button">Submit proposal</button>
+        <p class="tx-status" id="proposeStatus" role="status"></p>
+      </form>
+
+      <form class="terminal-form vote-form" onsubmit="return false">
+        <div class="form-heading"><span class="material-symbols-outlined" aria-hidden="true">how_to_vote</span><h2>Cast vote</h2></div>
+        <label for="voteProposalId">Proposal ID</label>
+        <input id="voteProposalId" type="number" min="0" step="1" placeholder="0">
+        <div class="vote-actions">
+          <button class="vote-button vote-for" data-vote="1" type="button">For</button>
+          <button class="vote-button vote-against" data-vote="0" type="button">Against</button>
+          <button class="vote-button vote-abstain" data-vote="2" type="button">Abstain</button>
+        </div>
+        <p class="tx-status" id="voteStatus" role="status"></p>
+      </form>
+    </section>
+
+    <div class="page-next"><span>Next</span><a href="dashboard.html">View activity <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div>
+  </main>
+  <footer class="compact-footer"><span>© 2026 LABUDAO</span><a href="protocol.html">Protocol</a></footer>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
