@@ -87,3 +87,29 @@ Passed. Pages retain semantic headings, landmarks, form labels, focus states, re
 ## Final result
 
 final result: passed
+
+## Physical Rights Member Pass — July 2026
+
+- Concept: `docs/design/labudao-member-pass-concept.png`
+- Desktop render: `docs/design/labudao-member-pass-desktop.png`
+- Mobile card render: `docs/design/labudao-member-pass-mobile.png`
+- Mobile panel render: `docs/design/labudao-member-pass-mobile-panel.png`
+- Browser verification: built-in browser at `1422 × 800` and mobile `433 × 938`
+
+### Fidelity ledger
+
+1. **Product hierarchy:** the first 3D pass was too small compared with the concept. The model scale and camera distance were adjusted until the credential became the dominant object.
+2. **Palette:** the implementation preserves near-black, graphite, cool silver and restrained cobalt edges; no fluorescent green, yellow or gold was introduced.
+3. **Material tiers:** Archive uses pearl matte, Alloy uses brushed metal, Obsidian uses smoked glass and Patron uses violet ceramic parameters.
+4. **Typography:** card and verification text use the existing Manrope and IBM Plex Mono system, with code-native labels and controls.
+5. **Responsive layout:** desktop retains the lanyard/panel split; mobile centers the complete card before a vertically scrollable rights panel with no horizontal document overflow.
+6. **Interaction:** the homepage Pass control, modal, physics-driven dragging, wallet data sync, balance-to-tier thresholds and QR open/close flow were verified.
+
+### Copy diff
+
+The implemented pass preserves the approved concept language: `LABU/DAO`, `PHYSICAL RIGHTS PASS`, `Member Pass`, the four tier names, current LABU balance, holder, event reference and credential action. The intentional addition is concise Chinese verification guidance for event use.
+
+### Remaining intentional deviations
+
+- The concept shows a static Obsidian example. The live homepage correctly falls back to Archive at zero balance and changes tier after the connected wallet balance is read.
+- The card moves under physics, so its angle and exact position vary between captures.

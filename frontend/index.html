@@ -25,10 +25,16 @@
       <a href="dao.html">Governance</a>
       <a href="dashboard.html">Activity</a>
     </nav>
-    <button class="button button-wallet" id="connectBtn" type="button">
-      <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
-      Connect
-    </button>
+    <div class="header-actions">
+      <button class="button button-pass" id="memberPassBtn" type="button" aria-haspopup="dialog">
+        <span class="material-symbols-outlined" aria-hidden="true">badge</span>
+        Pass
+      </button>
+      <button class="button button-wallet" id="connectBtn" type="button">
+        <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+        Connect
+      </button>
+    </div>
   </header>
 
   <div class="home-particle-background" aria-hidden="true">
@@ -228,6 +234,23 @@
       <span>HKU Capstone × RWA.ltd</span>
     </div>
   </footer>
+
+  <div class="member-pass-modal" id="memberPassModal" hidden>
+    <button class="member-pass-backdrop" type="button" data-close-pass aria-label="Dismiss member pass"></button>
+    <section class="member-pass-dialog" role="dialog" aria-modal="true" aria-label="LABUDAO physical rights member pass">
+      <button class="member-pass-close" type="button" data-close-pass aria-label="Close member pass">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m5 5 14 14M19 5 5 19"></path>
+        </svg>
+      </button>
+      <iframe
+        id="memberPassFrame"
+        title="LABUDAO interactive member pass"
+        data-src="pass/index.html"
+        allow="webgl"
+      ></iframe>
+    </section>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
   <script src="app.js"></script>

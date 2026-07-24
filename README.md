@@ -85,6 +85,7 @@ The current contracts are a public prototype. `$LABU` is not proof of ownership 
 | [Labubu Pilot](https://labudao.vercel.app/mint.html) | Connect a wallet and use the live `$LABU` mint |
 | [Governance](https://labudao.vercel.app/dao.html) | Create proposals and cast onchain votes |
 | [Activity](https://labudao.vercel.app/dashboard.html) | Review pilot governance activity |
+| Member Pass | Open the homepage **Pass** control to present a balance-tiered physical-rights credential |
 
 ### Ethereum Mainnet
 
@@ -117,8 +118,8 @@ Do not use the current pilot as a production custody, title or redemption system
 | Network | Ethereum Mainnet |
 | Contracts | Solidity `^0.8.19` |
 | Web3 | ethers.js v6 |
-| Frontend | Semantic HTML, JavaScript, custom responsive CSS |
-| Visual identity | Three.js particle field, Manrope, IBM Plex Mono |
+| Frontend | Semantic HTML, JavaScript, React + Vite member-pass module |
+| Visual identity | Three.js particle field, React Three Fiber Lanyard, Manrope, IBM Plex Mono |
 | Wallet | MetaMask and EIP-1193 injected providers |
 | Hosting | Vercel |
 
@@ -133,6 +134,7 @@ LABUDAO/
 │   └── PROTOCOL-VISION.md
 ├── frontend/
 │   ├── index.html
+│   ├── pass/
 │   ├── protocol.html
 │   ├── mint.html
 │   ├── dao.html
@@ -140,6 +142,12 @@ LABUDAO/
 │   ├── particle-labubu.html
 │   ├── styles.css
 │   └── app.js
+├── pass-src/
+│   └── src/
+│       ├── App.jsx
+│       └── components/Lanyard.jsx
+├── package.json
+├── vite.config.js
 ├── design-qa.md
 └── README.md
 ```
@@ -147,6 +155,8 @@ LABUDAO/
 ### Run Locally
 
 ```bash
+npm install
+npm run build:pass
 cd frontend
 python3 -m http.server 8080
 ```
@@ -248,6 +258,7 @@ LABUDAO 将所有权视为人与藏品之间的多种关系之一：
 | [Labubu Pilot](https://labudao.vercel.app/mint.html) | 连接钱包并使用已上线的 `$LABU` Mint |
 | [治理](https://labudao.vercel.app/dao.html) | 创建提案并进行链上投票 |
 | [动态](https://labudao.vercel.app/dashboard.html) | 查看 Pilot 治理活动 |
+| 实体权益卡 | 在首页点击 **Pass**，展示根据 LABU 余额自动分级的线下权益凭证 |
 
 ### 以太坊主网
 
@@ -280,8 +291,8 @@ LABUDAO 将所有权视为人与藏品之间的多种关系之一：
 | 网络 | Ethereum Mainnet |
 | 智能合约 | Solidity `^0.8.19` |
 | Web3 | ethers.js v6 |
-| 前端 | 语义化 HTML、JavaScript、自定义响应式 CSS |
-| 视觉系统 | Three.js 粒子场、Manrope、IBM Plex Mono |
+| 前端 | 语义化 HTML、JavaScript、React + Vite 权益卡模块 |
+| 视觉系统 | Three.js 粒子场、React Three Fiber Lanyard、Manrope、IBM Plex Mono |
 | 钱包 | MetaMask 与 EIP-1193 注入式钱包 |
 | 部署 | Vercel |
 
@@ -296,6 +307,7 @@ LABUDAO/
 │   └── PROTOCOL-VISION.md
 ├── frontend/
 │   ├── index.html
+│   ├── pass/
 │   ├── protocol.html
 │   ├── mint.html
 │   ├── dao.html
@@ -303,6 +315,12 @@ LABUDAO/
 │   ├── particle-labubu.html
 │   ├── styles.css
 │   └── app.js
+├── pass-src/
+│   └── src/
+│       ├── App.jsx
+│       └── components/Lanyard.jsx
+├── package.json
+├── vite.config.js
 ├── design-qa.md
 └── README.md
 ```
@@ -310,6 +328,8 @@ LABUDAO/
 ### 本地运行
 
 ```bash
+npm install
+npm run build:pass
 cd frontend
 python3 -m http.server 8080
 ```

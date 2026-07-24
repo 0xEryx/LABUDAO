@@ -38,6 +38,7 @@ let signer   = null;
 let token    = null;
 let governor = null;
 let userAddr = null;
+let userBalance = 0;
 
 // ---- DOM helpers ----
 const $ = (sel) => document.querySelector(sel);
@@ -111,6 +112,7 @@ async function refreshWalletInfo() {
 
     const balStr = fmt(balance);
     const supStr = fmt(supply);
+    userBalance = Number(ethers.formatUnits(balance, 18));
 
     setText("#walletAddress", truncAddr(userAddr));
     setText(
@@ -121,6 +123,7 @@ async function refreshWalletInfo() {
     setText("#totalSupplyDisplay", supStr);
     setText("#mintTotalSupply", supStr + " LABU");
     setText("#mintYourBalance", balStr + " LABU");
+    syncMemberPass();
   } catch (err) {
     console.error("Failed to refresh wallet info:", err);
   }
@@ -352,6 +355,65 @@ function initNavigation() {
   });
 }
 
+// ---- Physical rights member pass ----
+function getPassFrame() {
+  return $("#memberPassFrame");
+}
+
+function syncMemberPass() {
+  const frame = getPassFrame();
+  if (!frame?.contentWindow) return;
+  frame.contentWindow.postMessage({
+    type: "labudao:pass-data",
+    address: userAddr,
+    balance: userBalance,
+    verified: Boolean(userAddr && token),
+  }, window.location.origin);
+}
+
+function openMemberPass() {
+  const modal = $("#memberPassModal");
+  const frame = getPassFrame();
+  if (!modal || !frame) return;
+  if (!frame.src) frame.src = frame.dataset.src;
+  modal.hidden = false;
+  document.body.classList.add("pass-open");
+  window.setTimeout(syncMemberPass, 250);
+  $(".member-pass-close")?.focus();
+}
+
+function closeMemberPass() {
+  const modal = $("#memberPassModal");
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.classList.remove("pass-open");
+  $("#memberPassBtn")?.focus();
+}
+
+function initMemberPass() {
+  $("#memberPassBtn")?.addEventListener("click", openMemberPass);
+  $$("[data-close-pass]").forEach((button) => {
+    button.addEventListener("click", closeMemberPass);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !$("#memberPassModal")?.hidden) {
+      closeMemberPass();
+    }
+  });
+
+  window.addEventListener("message", async (event) => {
+    if (event.origin !== window.location.origin) return;
+    if (event.data?.type === "labudao:pass-ready") {
+      syncMemberPass();
+    }
+    if (event.data?.type === "labudao:connect") {
+      await connectWallet();
+      syncMemberPass();
+    }
+  });
+}
+
 // ---- Account / chain change listeners ----
 function initListeners() {
   if (!window.ethereum) return;
@@ -359,9 +421,11 @@ function initListeners() {
   window.ethereum.on("accountsChanged", (accounts) => {
     if (accounts.length === 0) {
       userAddr = null;
+      userBalance = 0;
       setText("#connectBtn", "Connect");
       $("#connectBtn")?.classList.remove("connected");
       setText("#heroConnectBtn", "Connect & mint");
+      syncMemberPass();
       return;
     }
     userAddr = accounts[0];
@@ -379,6 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollButtons();
   initNavigation();
   initListeners();
+  initMemberPass();
 
   // Wallet
   $("#connectBtn")?.addEventListener("click", connectWallet);
