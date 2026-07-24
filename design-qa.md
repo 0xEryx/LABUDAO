@@ -2,9 +2,9 @@
 
 ## Comparison target
 
-- Source visual truth: the established LABUDAO black, ivory and cool-silver visual system, extended for the universal protocol positioning.
-- Implementation: `http://127.0.0.1:8765/index.html`
-- Implementation screenshot: `/tmp/labudao-paginated-home.png`
+- Source visual truth: the generated LABUBU-native home and proof-based roadmap concepts, interpreted through the established LABUDAO black, ivory and cool-silver visual system.
+- Implementation: `http://127.0.0.1:8766/index.html`
+- Implementation screenshot: `docs/design/labudao-labubu-native-home-implementation.jpg`
 - Viewport: 1422 × 800 CSS px, device scale factor 1.
 - Source pixels: 1422 × 800 at the same desktop viewport.
 - Implementation pixels: 1422 × 800 at the same desktop viewport.
@@ -12,7 +12,7 @@
 
 ## Full-view comparison evidence
 
-The revised home and Protocol page were reviewed at desktop and mobile widths. The black, ivory, cool-silver and animated particle direction remains intact. The intentional changes are the universal collectible protocol narrative, a dedicated Protocol route, and explicit separation between proposed architecture and the live Labubu Pilot.
+The revised home, Protocol and Roadmap pages were reviewed at desktop and mobile widths. The black, ivory, cool-silver and animated particle direction remains intact. The current narrative is LABUBU-native first, with a general open-source collector protocol presented only as the future outcome of proven community work.
 
 ## Focused evidence
 
@@ -30,10 +30,10 @@ No separate crop was required because the header, headline, CTAs, particle asset
    - Fix: created focused product routes and later consolidated Pilot, proposals and Activity into one Governance workspace; the primary navigation now exposes Overview, Protocol, Governance and Redeem.
    - Post-fix evidence: desktop and mobile navigation expose all four primary routes without horizontal overflow.
 
-3. **P1 — Product scope was constrained to one collectible.**
-   - Evidence: previous copy positioned `$LABU` and Labubu as the product rather than the first proof.
-   - Fix: reframed LABUDAO as an asset-agnostic protocol with Passport, Custody, Governance, and Redemption stages; marked Labubu as the live Pilot.
-   - Post-fix evidence: the Protocol page distinguishes live and proposed layers, while README and the product vision document state the same boundary.
+3. **P1 — The relationship between LABUBU and the future protocol was unclear.**
+   - Evidence: earlier copy alternated between treating LABUBU as the whole product and treating it as a replaceable generic pilot.
+   - Fix: made LABUBU the DAO’s origin, cultural focus and first responsibility; the general protocol is now an open-source public good released only after the community proves one complete physical loop.
+   - Post-fix evidence: Overview, Protocol, Roadmap, README and the product vision document state the same LABUBU-first boundary.
 
 4. **P2 — Mobile particle stage extended past the viewport.**
    - Evidence: the first mobile pass reported document overflow wider than the viewport.
@@ -153,6 +153,59 @@ The implementation preserves the concepts’ core language: “Bring the object 
 - The generated collectible is a neutral, archive-style pilot object rather than a branded product photograph, keeping the prototype legally and visually generic.
 - The request ID and timestamps are deterministic interface copy rather than server-issued records.
 - No address collection or shipping form is included because the user requested a non-functional front end and those fields would imply real fulfillment.
+
+### Final result
+
+final result: passed
+
+## LABUBU-native Narrative + Proof Roadmap — July 2026
+
+- Home concept: `docs/design/labudao-labubu-native-home-concept.png`
+- Home implementation: `docs/design/labudao-labubu-native-home-implementation.jpg`
+- Roadmap concept: `docs/design/labudao-roadmap-concept.png`
+- Roadmap implementation: `docs/design/labudao-roadmap-implementation.jpg`
+- Roadmap mobile implementation: `docs/design/labudao-roadmap-mobile-implementation.jpg`
+- Final concept prompts: `docs/design/labudao-narrative-concept-prompts.md`
+- Browser verification: built-in browser at native `1422 × 800`; mobile override rendered at `433 × 938`
+- Routes verified: `index.html`, `protocol.html`, `dao.html`, `redeem.html`, `roadmap.html`
+
+### Fidelity ledger
+
+1. **Narrative thesis:** the implemented hero preserves the concept’s exact LABUBU-first headline, non-profit mission line, two calls to action and three-part project summary.
+2. **Navigation:** Overview, Protocol, Governance, Redeem and Roadmap appear consistently across all five primary routes. The mobile menu opens with exactly the same five links.
+3. **Home composition:** the code retains the large left-aligned editorial headline, quiet fixed header, square calls to action and cool-silver LABUBU particle silhouette.
+4. **Roadmap structure:** all five proof-based phases render in one horizontal desktop rail. Each phase contains a purpose and an explicit Proof / Exit condition instead of speculative dates or percentages.
+5. **Open-source pledge:** the collector-community categories and “Success means giving the tools away” section preserve the concept’s transition from one LABUBU experiment to a public protocol.
+6. **Palette and typography:** near-black, ivory and cool silver-blue remain dominant. Manrope is used for editorial/UI copy and IBM Plex Mono for metadata. No fluorescent green, yellow or gold was introduced.
+7. **Responsive behavior:** neither Overview nor Roadmap has document-level horizontal overflow. The Roadmap phase rail alone scrolls horizontally on mobile, while the hero, navigation and pledge stack normally.
+8. **Truth and independence:** “non-profit by mission” avoids implying an unverified legal status; the footer states that the project is an independent community initiative with no implied POP MART or LABUBU-brand-owner endorsement.
+
+### Copy diff
+
+The implementation preserves the generated concepts’ primary copy:
+
+- “For LABUBU. By its community.”
+- “A non-profit experiment in collective stewardship, culture and open protocol.”
+- “Prove it with LABUBU. Open it to everyone.”
+- “We will not generalize the protocol before one community can prove the complete loop.”
+- The five named roadmap phases and “Success means giving the tools away.”
+
+The production pages add the longer six-chapter homepage narrative, explicit current/proposed boundaries, the independence disclaimer and the existing Pass / Connect controls. These additions explain the product without changing the concept hierarchy.
+
+### Intentional deviations
+
+- The concept places the particle collectible mainly on the right. The implementation keeps the existing fixed particle HTML as one continuous full-viewport background because the user explicitly requested a single long homepage background.
+- The Roadmap concept uses a line-art object. The implementation reuses the approved monochrome archive collectible image so the route remains consistent with Redeem and avoids inventing an official product photograph.
+- The wording is “non-profit by mission,” not “registered non-profit,” until a verified legal entity exists.
+- Roadmap phases use proof conditions rather than dates because readiness depends on community evidence, audits and physical lifecycle verification.
+
+### Browser verification
+
+- Native viewport: `1422 × 800`; mobile override: `433 × 938`.
+- Desktop Roadmap rendered five phases at equal widths in one row with no document overflow.
+- Mobile Roadmap retained a 416 px document width and a separate 1,325 px scrollable phase rail.
+- Mobile Overview retained a 416 px document width; headline text and both full-width calls to action fit within the content bounds.
+- Mobile navigation opened and exposed exactly Overview, Protocol, Governance, Redeem and Roadmap.
 
 ### Final result
 

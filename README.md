@@ -1,7 +1,7 @@
 # LABUDAO
 
-> One protocol. Every collectible.<br>
-> 一个协议，连接所有值得被记住的藏品。
+> For LABUBU. By its community.<br>
+> 为 LABUBU 而生，由社区共同拥有。
 
 [English](#english) · [中文](#中文) · [Live Portal](https://labudao.vercel.app/) · [Protocol](https://labudao.vercel.app/protocol.html)
 
@@ -13,25 +13,27 @@
 
 ### What is LABUDAO?
 
-LABUDAO is building a universal onchain protocol for art, designer objects, cultural artifacts and other valuable physical collectibles.
+LABUDAO is a LABUBU-native, community-owned experimental DAO with a non-profit mission.
 
-An artwork is more than material. A collectible is more than a price. Every meaningful object carries authorship, scarcity, custody, affection and the decisions of everyone who has protected it. Yet the object often outlives the systems that describe it: certificates remain in drawers, exhibition rights live in emails, custody becomes a promise and context disappears whenever ownership changes.
+It was created specifically for the people, objects, stories and collector culture around LABUBU. The organization is not an investment fund, a speculative marketplace or an attempt to extract value from fandom. It is a community commons: a place to preserve provenance, coordinate custody, share cultural access and make accountable decisions about what the community protects.
 
-LABUDAO exists to give the object, its rights and its history one continuous source of truth.
+LABUBU is therefore not a replaceable “pilot asset.” It is the origin, focus and first responsibility of the DAO.
 
-Labubu is the first live pilot—not the limit of the protocol.
+The wider protocol vision comes after proof. If the LABUBU community can complete one trustworthy loop from Asset Passport → Custody → Governance → verified Redemption, LABUDAO will release the protocol, technical foundation, documentation and reference implementation as open-source public infrastructure for collector communities everywhere.
+
+LABUDAO is an independent community initiative. No official affiliation with or endorsement by POP MART or the owners of the LABUBU brand is implied.
 
 ### Product Thesis
 
-LABUDAO is not designed to wrap every object in a speculative token. Its target architecture connects five layers to the same evolving collectible record:
+LABUDAO uses one real collector culture to prove a more accountable way to steward meaningful objects together:
 
 | Protocol idea | What it means | Status |
 |---|---|---|
-| **Living Passport** | Provenance accumulates instead of resetting whenever an object changes hands | Proposed |
-| **Physical Truth** | Custodian attestations connect onchain state to the real object | Proposed |
-| **Composable Rights** | Exhibition, access, lending, governance, transfer and redemption become legible rights | Proposed |
-| **Collective Memory** | Community decisions become part of the collectible’s history | Pilot live |
-| **Open Standard** | Art, design and culture share one lifecycle without rebuilding the same trust layer | Target |
+| **Living LABUBU Passport** | One physical LABUBU accumulates origin, condition and lifecycle evidence | Proposed |
+| **Verifiable Custody** | Custodian attestations connect the community record to the real object | Proposed |
+| **Community Rights** | Exhibition, access, lending, governance, transfer and redemption become legible responsibilities | Proposed |
+| **Transparent Decisions** | Community proposals and votes become accountable cultural memory | Pilot live |
+| **Open-source Future** | The proven protocol and technical foundation are released for other collector communities | Pledged |
 
 ### The Collectible Lifecycle
 
@@ -63,16 +65,16 @@ LABUDAO treats ownership as one relationship among many:
 - **Transfer** — Move rights with context intact.
 - **Redeem** — Reconnect the onchain record and the physical object.
 
-### Live Pilot vs Target Protocol
+### Current LABUBU Experiment vs Open-source Future
 
-| Layer | Labubu Pilot — live today | Universal Protocol — target |
+| Layer | LABUBU experiment — today | Open-source protocol — after proof |
 |---|---|---|
 | Identity | `$LABU` ERC-20 participation token | Unique Asset Passport for each collectible |
 | Custody | Offchain project process | Verifiable, time-bound custodian attestations |
 | Governance | Lightweight onchain governor | Snapshot-safe, role-aware, asset-specific governance |
 | Rights | Token-weighted participation | Explicit exhibition, access, lending, transfer and redemption rights |
 | Redemption | Product concept only | Request → lock → approve → deliver → confirm state machine |
-| Asset scope | Labubu proving ground | Art, design, culture and valuable collectibles |
+| Asset scope | LABUBU community and one complete object loop | Open-source infrastructure other collector communities can fork |
 
 The current contracts are a public prototype. `$LABU` is not proof of ownership of a specific physical collectible.
 
@@ -84,6 +86,7 @@ The current contracts are a public prototype. `$LABU` is not proof of ownership 
 | [Protocol](https://labudao.vercel.app/protocol.html) | Target architecture, lifecycle and participant roles |
 | [Governance](https://labudao.vercel.app/dao.html) | Mint `$LABU`, create proposals, vote and review activity in one workspace |
 | [Redeem](https://labudao.vercel.app/redeem.html) | Preview the complete request → lock → review → delivery → confirm experience without submitting a real transaction |
+| [Roadmap](https://labudao.vercel.app/roadmap.html) | Proof-based path from a LABUBU community experiment to an open-source collector protocol |
 | Member Pass | Open the homepage **Pass** control to present a balance-tiered physical-rights credential |
 
 The Redeem page is intentionally interface-only. It does not lock tokens, request a wallet signature, contact a custodian or create an onchain redemption record.
@@ -102,7 +105,7 @@ The Redeem page is intentionally interface-only. It does not lock tokens, reques
 
 ### Current Contract Boundaries
 
-The deployed contracts are unaudited prototypes and do not yet implement the full universal protocol:
+The deployed contracts are unaudited prototypes and do not yet implement the full planned protocol:
 
 - `freeMint` is permissionless until the maximum supply is reached.
 - Voting power uses the wallet balance at vote time; historical snapshots are not implemented.
@@ -139,6 +142,7 @@ LABUDAO/
 │   ├── protocol.html
 │   ├── dao.html
 │   ├── redeem.html
+│   ├── roadmap.html
 │   ├── redeem-object.png
 │   ├── mint.html          # Legacy redirect → Governance / Participate
 │   ├── dashboard.html     # Legacy redirect → Governance / Activity
@@ -166,20 +170,25 @@ python3 -m http.server 8080
 
 Open `http://localhost:8080`.
 
-### Build Sequence
+### Proof-based Roadmap
 
-1. **Live Pilot** — `$LABU`, lightweight governance and activity explorer.
-2. **Identity + Custody** — One real collectible with an Asset Passport and custodian attestations.
-3. **Governance + Redemption** — Snapshot-safe voting, role controls and a complete physical redemption state machine.
-4. **Universal Protocol** — Asset-agnostic templates and integration interfaces for creators, custodians, collectors and marketplaces.
+1. **Community Ground** — Publish the public charter, non-profit commitment, contribution rules and accountable governance process.
+2. **One Object, Full Loop** — Move one LABUBU through Passport → Custody → Governance → verified Redemption.
+3. **Cultural Commons** — Use the proven loop for exhibitions, loans, shared stories and public-interest programs.
+4. **Open Protocol** — Release audited contracts, documentation, SDK and reference implementation under an open-source license.
+5. **Collector Federation** — Let independent sports-card, anime-figure, goods, Nendoroid, art-toy and rare-object communities fork and govern their own versions.
 
-The immediate proof is deliberately narrow: move one sealed Labubu through Passport → Custody → Governance → verified Redemption before expanding to many collections.
+These are proof gates rather than invented calendar promises. LABUDAO advances only when each milestone leaves public, verifiable evidence.
 
 For the full product model, success criteria and non-scope, read [docs/PROTOCOL-VISION.md](docs/PROTOCOL-VISION.md).
 
 ### Disclaimer
 
-LABUDAO originated as an HKU Capstone project with support from RWA.ltd. The current smart contracts are experimental and unaudited. `$LABU` does not represent securities, investment advice, guaranteed returns or ownership of a specific physical collectible. Interact with the contracts at your own risk.
+LABUDAO originated as an HKU Capstone project with support from RWA.ltd. It is an independent community initiative and is not affiliated with or endorsed by POP MART or the owners of the LABUBU brand.
+
+“Non-profit” describes the project’s mission and governance commitment. Unless and until a legally registered non-profit entity is established, it should not be read as a claim of formal charitable status.
+
+The current smart contracts are experimental and unaudited. `$LABU` does not represent securities, investment advice, guaranteed returns or ownership of a specific physical collectible. Interact with the contracts at your own risk.
 
 ---
 
@@ -189,25 +198,27 @@ LABUDAO originated as an HKU Capstone project with support from RWA.ltd. The cur
 
 ### LABUDAO 是什么？
 
-LABUDAO 正在构建一个面向艺术品、设计作品、文化物件及其他有价值实体藏品的通用链上协议。
+LABUDAO 是一个为 LABUBU 收藏文化专门建立、由社区共同拥有、以非营利为使命的实验性 DAO。
 
-艺术品不只是一种材料，藏品也不只是一个价格。每件有意义的物件都承载着创作者、稀缺性、托管关系、情感，以及所有曾经保护过它的人所作出的决定。然而，物件往往比描述它的系统存在得更久：证书留在抽屉里，展览权存在邮件里，托管只能依赖承诺，每次所有权转移都可能让原有语境消失。
+它服务的是围绕 LABUBU 形成的人、藏品、故事与收藏文化。LABUDAO 不是投资基金，不是投机市场，也不是从爱好者身上抽取价值的工具。它更接近一个社区公地：共同保存来源历史、协调托管、分享文化体验，并以公开治理的方式决定社区要保护什么。
 
-LABUDAO 希望让藏品、权利与历史始终连接在同一个连续、可验证的事实记录中。
+因此，LABUBU 不是一个随时可以被替换掉的“试验资产”，而是这个 DAO 的起点、核心服务对象与第一份责任。
 
-Labubu 是第一个已上线的 Pilot，而不是协议的边界。
+更大的 Protocol 愿景建立在成功验证之后。只有当 LABUBU 社区真正完成 Asset Passport → 托管 → 治理 → 验证兑换的可信闭环，LABUDAO 才会把协议、技术底层、文档和参考实现完整开源，成为全世界收藏社群都能使用、修改与自治的公共基础设施。
+
+LABUDAO 是独立社区项目，不暗示与 POP MART 或 LABUBU 品牌权利方存在官方隶属、授权或背书关系。
 
 ### 产品主张
 
-LABUDAO 的目标不是把所有物件包装成投机代币。目标协议将五个层次连接到同一份持续演化的藏品记录：
+LABUDAO 用一个真实收藏文化，验证人们能否用更公开、更负责任的方式共同守护有意义的物件：
 
 | 协议亮点 | 含义 | 当前状态 |
 |---|---|---|
-| **Living Passport / 活的资产护照** | 藏品转手时，来源历史继续累积，而不是重新开始 | 规划中 |
-| **Physical Truth / 实物证明** | 托管证明将链上状态与真实物件连接起来 | 规划中 |
-| **Composable Rights / 可组合权利** | 展览、访问、借展、治理、转移和兑换成为清晰权利 | 规划中 |
-| **Collective Memory / 集体记忆** | 社区决策成为藏品历史的一部分 | Pilot 已上线 |
-| **Open Standard / 开放标准** | 艺术、设计与文化共享生命周期，无需重复建设信任基础设施 | 长期目标 |
+| **Living LABUBU Passport / 活的 LABUBU 护照** | 一件真实 LABUBU 持续累积来源、状态与生命周期证据 | 规划中 |
+| **Verifiable Custody / 可验证托管** | 托管证明把社区记录与真实物件连接起来 | 规划中 |
+| **Community Rights / 社区权利** | 展览、访问、借展、治理、转移和兑换成为清晰责任 | 规划中 |
+| **Transparent Decisions / 公开决策** | 提案与投票成为可追责的社区文化记忆 | Pilot 已上线 |
+| **Open-source Future / 开源未来** | 将验证成功的协议和技术底层交给其他收藏社群 | 公开承诺 |
 
 ### 藏品生命周期
 
@@ -239,16 +250,16 @@ LABUDAO 将所有权视为人与藏品之间的多种关系之一：
 - **转移** — 在保留完整语境的同时转移权利。
 - **兑换** — 重新连接链上记录与真实物件。
 
-### 已上线 Pilot 与目标协议
+### 当前 LABUBU 实验与开源未来
 
-| 层级 | 当前 Labubu Pilot | 目标通用协议 |
+| 层级 | 当前 LABUBU 实验 | 完成验证后的开源协议 |
 |---|---|---|
 | 身份 | `$LABU` ERC-20 参与代币 | 每件藏品独立 Asset Passport |
 | 托管 | 项目方线下流程 | 可验证、有时效的托管方证明 |
 | 治理 | 轻量链上 Governor | 基于快照、角色与具体资产的治理 |
 | 权利 | 基于代币余额的参与权 | 明确的展览、访问、借展、转移与兑换权 |
 | 兑换 | 当前仅为产品概念 | 请求 → 锁定 → 审批 → 交付 → 确认状态机 |
-| 资产范围 | Labubu 验证场 | 艺术、设计、文化与其他有价值藏品 |
+| 资产范围 | LABUBU 社区与一件藏品的完整闭环 | 可由其他收藏社群独立分叉的开源基础设施 |
 
 当前主网合约属于公开原型。`$LABU` 并不代表某件特定实体藏品的所有权。
 
@@ -260,6 +271,7 @@ LABUDAO 将所有权视为人与藏品之间的多种关系之一：
 | [协议](https://labudao.vercel.app/protocol.html) | 目标架构、生命周期与参与角色 |
 | [治理](https://labudao.vercel.app/dao.html) | 在同一个工作区完成 `$LABU` Mint、提案、投票与治理动态查看 |
 | [兑换](https://labudao.vercel.app/redeem.html) | 预览请求 → 锁定 → 审核 → 交付 → 确认的完整体验，不提交真实交易 |
+| [路线图](https://labudao.vercel.app/roadmap.html) | 从 LABUBU 社区实验走向全球开源收藏协议的证据式路线图 |
 | 实体权益卡 | 在首页点击 **Pass**，展示根据 LABU 余额自动分级的线下权益凭证 |
 
 Redeem 页面刻意保持为纯前端原型：不会锁定代币、请求钱包签名、联系托管方，也不会创建链上兑换记录。
@@ -315,6 +327,7 @@ LABUDAO/
 │   ├── protocol.html
 │   ├── dao.html
 │   ├── redeem.html
+│   ├── roadmap.html
 │   ├── redeem-object.png
 │   ├── mint.html          # 旧链接跳转至 Governance / Participate
 │   ├── dashboard.html     # 旧链接跳转至 Governance / Activity
@@ -342,17 +355,22 @@ python3 -m http.server 8080
 
 打开 `http://localhost:8080`。
 
-### 实施顺序
+### 证据式路线图
 
-1. **已上线 Pilot** — `$LABU`、轻量治理与活动页面。
-2. **身份与托管** — 为一件真实藏品建立 Asset Passport 与托管证明。
-3. **治理与兑换** — 引入快照投票、角色权限和完整的实体兑换状态机。
-4. **通用协议** — 提供与具体资产无关的模板，以及面向创作者、托管方、收藏者和市场的集成接口。
+1. **Community Ground / 社区地基** — 发布公开章程、非营利承诺、贡献规则与可追责治理流程。
+2. **One Object, Full Loop / 一件藏品完整闭环** — 让一件 LABUBU 完成 Passport → 托管 → 治理 → 验证兑换。
+3. **Cultural Commons / 文化公地** — 将闭环用于展览、借展、故事保存和公共文化项目。
+4. **Open Protocol / 开放协议** — 以开源许可证发布审计后的合约、技术文档、SDK 与参考实现。
+5. **Collector Federation / 收藏社群联邦** — 让球星卡、动漫手办、谷子、粘土人、潮流玩具和稀有物件社群独立分叉并治理自己的版本。
 
-现阶段最重要的验证目标非常具体：先让一只密封 Labubu 完成 Asset Passport → 托管 → 治理 → 验证兑换的完整闭环，再扩展到更多藏品。
+这些阶段是“证据门槛”，而不是虚构的年份承诺。只有当前一阶段留下公开、可验证的成果，LABUDAO 才进入下一阶段。
 
 完整产品模型、成功标准与明确不做的范围见 [docs/PROTOCOL-VISION.md](docs/PROTOCOL-VISION.md)。
 
 ### 免责声明
 
-LABUDAO 起源于香港大学 HKU Capstone 项目，并获得 RWA.ltd 支持。当前智能合约属于实验性、未经审计的原型。`$LABU` 不构成证券、投资建议、收益承诺，也不代表某件特定实体藏品的所有权。与合约交互需自行承担风险。
+LABUDAO 起源于香港大学 HKU Capstone 项目，并获得 RWA.ltd 支持。它是独立社区项目，与 POP MART 或 LABUBU 品牌权利方不存在官方隶属或背书关系。
+
+“非营利”描述的是项目使命与治理承诺；在正式完成非营利法律实体注册之前，不应将其理解为已经取得法定慈善或非营利机构资格。
+
+当前智能合约属于实验性、未经审计的原型。`$LABU` 不构成证券、投资建议、收益承诺，也不代表某件特定实体藏品的所有权。与合约交互需自行承担风险。

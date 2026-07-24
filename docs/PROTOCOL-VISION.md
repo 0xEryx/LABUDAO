@@ -2,44 +2,74 @@
 
 ## Product Thesis
 
-LABUDAO is a universal coordination protocol for physical objects that carry artistic, cultural or collectible value.
+LABUDAO is a LABUBU-native, community-owned experimental DAO with a non-profit mission.
 
-It gives every object a durable onchain identity and lets trusted actors coordinate custody, rights, governance and redemption without forcing every collection to invent a new system.
+It helps LABUBU collectors move from fragmented ownership and informal coordination to accountable collective stewardship through public governance and a protocol that connects identity, custody, rights and redemption.
 
-Labubu is the first proving ground. The protocol must remain asset-agnostic.
+LABUBU is not a replaceable pilot asset. It is the origin, cultural focus and first responsibility of the organization.
+
+The protocol becomes general only after the LABUBU community proves one complete physical loop. At that point, LABUDAO commits to releasing the contracts, technical foundation, documentation, SDK and reference implementation as open-source public infrastructure.
+
+## Truth Ledger
+
+### Facts
+
+- `$LABU` and the lightweight governor are deployed on Ethereum Mainnet.
+- The current frontend supports minting, proposals, voting, activity and a simulated Redeem experience.
+- Asset Passport, custody attestations and enforceable redemption contracts are not deployed.
+
+### Strategic decisions
+
+- LABUDAO is LABUBU-first rather than asset-agnostic in its community identity.
+- The organization is non-profit by mission and should not offer yield, dividends or price promises.
+- The universal protocol is a future open-source gift earned through proof, not the current product claim.
+- Milestones are evidence gates, not speculative dates.
+
+### Constraints
+
+- “Non-profit” is a mission and governance commitment unless a legally registered entity has been established.
+- LABUDAO is an independent community initiative and must not imply official affiliation with or endorsement by POP MART or the owners of the LABUBU brand.
+- The current contracts are experimental and unaudited.
+
+## Non-negotiable Principles
+
+1. **LABUBU-first** — Serve one real collector culture deeply enough to create accountable shared stewardship.
+2. **Public benefit** — Return value to community culture, access, preservation and education rather than financial extraction.
+3. **Prove, then open** — Complete one real loop before releasing a general open-source protocol for everyone.
 
 ## Smallest Complete Loop
 
-`Object → Asset Passport → Custody Proof → Rights Governance → Verified Transfer or Redemption`
+`One LABUBU → Asset Passport → Custody Proof → Community Governance → Verified Transfer or Redemption`
 
-The first complete release should prove this loop for one sealed Labubu before expanding to other collections.
+The first complete release should prove this loop for one physical LABUBU before expanding the technical model.
 
 ## Core Modules
 
-### 1. Asset Passport
+### 1. Living LABUBU Passport
 
 - Unique identifier for one physical object
-- Creator, collection, edition and provenance metadata
+- Collection, edition, attributes, condition and provenance
 - Rights and restrictions attached to the object
-- Append-only lifecycle events
+- Append-only lifecycle and community-decision events
 
 ### 2. Custody Registry
 
 - Approved custodians issue time-bound attestations
-- Custody changes create a new signed event
+- Custody and condition changes create signed events
 - Public verification without exposing sensitive storage details
 - Dispute and expired-attestation states
 
-### 3. Rights Governor
+### 3. Community Rights Governor
 
 - Snapshot-safe voting power
-- Asset-specific proposals
-- Role separation for owner, custodian and community
+- Object-specific proposals
+- Role separation for holder, custodian and community
 - Timelocked execution for material actions
+- Transparent treasury and public-interest program rules
 
 ### 4. Redemption Escrow
 
-- Request → lock → approve → ship → confirm → close
+- Request → lock → review → deliver → confirm → close
 - Prevents simultaneous onchain transfer and physical delivery
 - Records delivery evidence without publishing personal data
 - Supports cancellation and dispute paths
@@ -47,12 +77,12 @@ The first complete release should prove this loop for one sealed Labubu before e
 ## Product Roles
 
 | Role | Primary job |
-|------|-------------|
-| Creator / Issuer | Registers origin, edition and initial rights |
+|---|---|
+| Collector | Protects objects and stories; participates in decisions |
 | Custodian | Safeguards the object and attests its condition |
-| Collector | Holds rights, transfers them or requests redemption |
-| Community | Governs shared access, exhibition and treasury decisions |
-| Redeemer | Completes the physical claim and closes the onchain state |
+| Contributor | Builds cultural programs, documentation and protocol tools |
+| Community | Governs access, exhibitions, treasury and shared responsibilities |
+| Redeemer | Completes the physical claim and closes the state |
 
 ## Current Reality
 
@@ -61,51 +91,70 @@ The live Ethereum contracts only provide:
 - A permissionless `$LABU` ERC-20 mint capped at 10,000,000 tokens
 - A lightweight propose, vote and execute governor
 
-They do not provide an Asset Passport, verified custody or enforceable physical redemption. Vote weight is not snapshot-based, proposal creation is permissionless and governance parameters lack access control. These contracts should be treated as a public pilot.
+They do not provide an Asset Passport, verified custody or enforceable physical redemption. Vote weight is not snapshot-based, proposal creation is permissionless and governance parameters lack access control. These contracts are a public participation prototype, not evidence of ownership in a specific LABUBU.
 
-## Build Sequence
+## Proof-based Roadmap
 
-### Phase 0 — Live Pilot
+### 01 — Community Ground
 
-- Keep `$LABU` mint, governance and activity transparent
-- Clearly label all live surfaces as the Labubu Pilot
-- Do not imply ownership of a specific physical object
+- Publish a public charter and non-profit commitment
+- Define contribution, conflict and treasury rules
+- Make governance roles and decision processes transparent
 
-### Phase 1 — Identity + Custody
+**Exit proof:** the public charter, roles and decision process are live and reviewable.
 
-- Deploy one Asset Passport for one sealed Labubu
-- Add signed custodian attestations and public status verification
-- Publish an event timeline for the object
+### 02 — One Object, Full Loop
 
-### Phase 2 — Governance + Redemption
+- Register one physical LABUBU with a Living Passport
+- Add signed custody and condition attestations
+- Upgrade governance to snapshots, roles and timelocks
+- Complete one verified redemption
 
-- Replace balance-at-vote logic with historical snapshots
-- Add role and access controls
-- Implement the redemption escrow state machine
-- Complete one end-to-end physical delivery
+**Exit proof:** an independent observer can verify the complete digital and physical record.
 
-### Phase 3 — Universal Protocol
+### 03 — Cultural Commons
 
-- Create collection templates without hard-coded Labubu assumptions
-- Support artworks, designer objects, rare collectibles and cultural artifacts
-- Publish integration interfaces for creators, custodians and marketplaces
+- Run exhibitions, community loans and public gatherings
+- Attach community stories and decisions to the object record
+- Establish public-interest grants or educational programs
+
+**Exit proof:** real programs produce public, reusable community memory.
+
+### 04 — Open Protocol
+
+- Audit and harden the contracts
+- Publish technical documentation, SDK and reference implementation
+- Release the complete stack under an open-source license
+
+**Exit proof:** the repository and license are public, and an unaffiliated team can build with them.
+
+### 05 — Collector Federation
+
+- Support independent forks for sports cards, anime figures, goods and merch, Nendoroids, art toys and rare objects
+- Let every community control its own governance and cultural rules
+- Share security improvements and standards without centralizing community authority
+
+**Exit proof:** multiple independent communities operate their own versions and contribute improvements in the open.
 
 ## Success Measures
 
-- One collectible completes the full protocol loop
+- One LABUBU completes the full physical protocol loop
 - Passport and custody state can be verified by an independent observer
 - No double claim exists during transfer or redemption
-- A second, non-Labubu collection can integrate without changing core contracts
-- Governance actions are snapshot-safe and access-controlled
+- Community decisions and treasury rules remain publicly accountable
+- A second collector community can deploy an independent fork from public documentation
+- The open-source stack can be used without permission from LABUDAO
 
-## Explicit Non-Scope
+## Explicit Non-scope
 
 Until the full loop works, LABUDAO should not prioritize:
 
 - A speculative marketplace
-- Staking, yield or APY products
+- Staking, yield, APY or dividend products
+- Token-price narratives
 - Multi-chain expansion
 - AI price prediction
 - Large-scale collection onboarding
+- Claims of official LABUBU or POP MART representation
 
-The product earns the right to scale only after one physical object can move safely from registration to verified redemption.
+The organization earns the right to expand only after one LABUBU can move safely from registration to verified redemption and the community can demonstrate public benefit.
