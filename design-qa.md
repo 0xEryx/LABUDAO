@@ -27,8 +27,8 @@ No separate crop was required because the header, headline, CTAs, particle asset
 
 2. **P1 — Core actions were crowded into one continuous page.**
    - Evidence: Mint, proposal creation, voting, activity, and redemption all followed the hero in one long document.
-   - Fix: created five real pages—Overview, Protocol, Pilot, Governance, and Activity—with a persistent active-state navigation and contextual next-page links.
-   - Post-fix evidence: desktop and mobile navigation expose all five routes without horizontal overflow.
+   - Fix: created focused product routes and later consolidated Pilot, proposals and Activity into one Governance workspace; the primary navigation now exposes Overview, Protocol, Governance and Redeem.
+   - Post-fix evidence: desktop and mobile navigation expose all four primary routes without horizontal overflow.
 
 3. **P1 — Product scope was constrained to one collectible.**
    - Evidence: previous copy positioned `$LABU` and Labubu as the product rather than the first proof.
@@ -65,7 +65,7 @@ Passed. The supplied WebGL particle Labubu remains the real animated asset. It n
 
 ### Copy and content
 
-Passed. The home now carries a six-chapter editorial narrative: belief, market fracture, protocol distinction, rights model, collectible lifecycle and long-term horizon. Proposed capabilities are visibly labelled Proposed or Target, while the existing governor is labelled Pilot live. The Protocol page retains the compact technical model, and Pilot, Governance and Activity remain task-focused.
+Passed. The home now carries a six-chapter editorial narrative: belief, market fracture, protocol distinction, rights model, collectible lifecycle and long-term horizon. Proposed capabilities are visibly labelled Proposed or Target, while the existing governor is labelled Pilot live. The Protocol page retains the compact technical model, while Pilot participation, proposals and activity now live inside one task-focused Governance workspace.
 
 ### Icons and controls
 
@@ -113,3 +113,47 @@ The implemented pass preserves the approved concept language: `LABU/DAO`, `PHYSI
 
 - The concept shows a static Obsidian example. The live homepage correctly falls back to Archive at zero balance and changes tier after the connected wallet balance is read.
 - The card moves under physics, so its angle and exact position vary between captures.
+
+## Redeem Prototype + Unified Governance — July 2026
+
+- Request-state concept: `docs/design/labudao-redeem-request-concept.png`
+- Tracking-state concept: `docs/design/labudao-redeem-tracking-concept.png`
+- Request implementation: `docs/design/labudao-redeem-request-implementation.jpg`
+- Tracking implementation: `docs/design/labudao-redeem-tracking-implementation.jpg`
+- Mobile implementation: `docs/design/labudao-redeem-mobile-implementation.jpg`
+- Generated collectible asset: `frontend/redeem-object.png`
+- Browser verification: built-in browser at native `1422 × 800`; the mobile override rendered at `433 × 938`
+- Routes verified: `redeem.html`, `dao.html`, `index.html`, plus legacy redirects from `mint.html` and `dashboard.html`
+
+### Fidelity ledger
+
+1. **Information architecture:** Pilot, proposal tools and Activity were removed from the primary navigation and consolidated under one Governance route with a low-profile Participate / Proposals / Activity index.
+2. **Redeem hierarchy:** the request view follows the approved three-column concept—eligible right, selected object and request summary—followed by a five-stage lifecycle rail.
+3. **Tracking state:** creating a prototype request reveals the request ledger, current-stage explanation, checklist, activity timeline and simulated stage progression through Confirm.
+4. **Palette:** near-black, ivory and cool silver remain the only dominant colors. No fluorescent green, yellow or gold was added.
+5. **Typography:** Manrope remains the display and interface face; IBM Plex Mono is limited to metadata, IDs, stages and ledger values.
+6. **Responsive behavior:** desktop retains the operational grid. Mobile stacks panels, keeps the stage rail horizontally scrollable and reports no document-level horizontal overflow.
+7. **Safety boundary:** every Redeem state is local interface state. The page explicitly states that it does not request a signature, lock tokens, contact a custodian or submit anything onchain.
+
+### Copy diff
+
+The implementation preserves the concepts’ core language: “Bring the object home,” “Eligible rights,” “Selected object,” “Request summary,” the five lifecycle stages, “Prototype request created,” “Simulate next stage” and “Nothing has been submitted onchain.” The implementation adds destination/contact options, an explicit no-signature note and production-boundary copy at the Confirm stage.
+
+### Browser verification
+
+- Request button remains disabled until both required selects are completed.
+- A request carries the selected jurisdiction and contact route into the tracking ledger.
+- Three simulated advances reach `05 / Confirm`, disable the advance button and produce five total timeline events.
+- Cancel returns to the request view without a network or wallet action.
+- The mobile navigation opens with exactly four primary links.
+- `mint.html` redirects to `dao.html#participation`; `dashboard.html` redirects to `dao.html#activity`.
+
+### Remaining intentional deviations
+
+- The generated collectible is a neutral, archive-style pilot object rather than a branded product photograph, keeping the prototype legally and visually generic.
+- The request ID and timestamps are deterministic interface copy rather than server-issued records.
+- No address collection or shipping form is included because the user requested a non-functional front end and those fields would imply real fulfillment.
+
+### Final result
+
+final result: passed

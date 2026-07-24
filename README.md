@@ -82,10 +82,11 @@ The current contracts are a public prototype. `$LABU` is not proof of ownership 
 |---|---|
 | [Overview](https://labudao.vercel.app/) | Six-chapter product narrative and protocol vision |
 | [Protocol](https://labudao.vercel.app/protocol.html) | Target architecture, lifecycle and participant roles |
-| [Labubu Pilot](https://labudao.vercel.app/mint.html) | Connect a wallet and use the live `$LABU` mint |
-| [Governance](https://labudao.vercel.app/dao.html) | Create proposals and cast onchain votes |
-| [Activity](https://labudao.vercel.app/dashboard.html) | Review pilot governance activity |
+| [Governance](https://labudao.vercel.app/dao.html) | Mint `$LABU`, create proposals, vote and review activity in one workspace |
+| [Redeem](https://labudao.vercel.app/redeem.html) | Preview the complete request → lock → review → delivery → confirm experience without submitting a real transaction |
 | Member Pass | Open the homepage **Pass** control to present a balance-tiered physical-rights credential |
+
+The Redeem page is intentionally interface-only. It does not lock tokens, request a wallet signature, contact a custodian or create an onchain redemption record.
 
 ### Ethereum Mainnet
 
@@ -136,9 +137,11 @@ LABUDAO/
 │   ├── index.html
 │   ├── pass/
 │   ├── protocol.html
-│   ├── mint.html
 │   ├── dao.html
-│   ├── dashboard.html
+│   ├── redeem.html
+│   ├── redeem-object.png
+│   ├── mint.html          # Legacy redirect → Governance / Participate
+│   ├── dashboard.html     # Legacy redirect → Governance / Activity
 │   ├── particle-labubu.html
 │   ├── styles.css
 │   └── app.js
@@ -255,10 +258,11 @@ LABUDAO 将所有权视为人与藏品之间的多种关系之一：
 |---|---|
 | [首页](https://labudao.vercel.app/) | 六章产品叙事与协议愿景 |
 | [协议](https://labudao.vercel.app/protocol.html) | 目标架构、生命周期与参与角色 |
-| [Labubu Pilot](https://labudao.vercel.app/mint.html) | 连接钱包并使用已上线的 `$LABU` Mint |
-| [治理](https://labudao.vercel.app/dao.html) | 创建提案并进行链上投票 |
-| [动态](https://labudao.vercel.app/dashboard.html) | 查看 Pilot 治理活动 |
+| [治理](https://labudao.vercel.app/dao.html) | 在同一个工作区完成 `$LABU` Mint、提案、投票与治理动态查看 |
+| [兑换](https://labudao.vercel.app/redeem.html) | 预览请求 → 锁定 → 审核 → 交付 → 确认的完整体验，不提交真实交易 |
 | 实体权益卡 | 在首页点击 **Pass**，展示根据 LABU 余额自动分级的线下权益凭证 |
+
+Redeem 页面刻意保持为纯前端原型：不会锁定代币、请求钱包签名、联系托管方，也不会创建链上兑换记录。
 
 ### 以太坊主网
 
@@ -309,9 +313,11 @@ LABUDAO/
 │   ├── index.html
 │   ├── pass/
 │   ├── protocol.html
-│   ├── mint.html
 │   ├── dao.html
-│   ├── dashboard.html
+│   ├── redeem.html
+│   ├── redeem-object.png
+│   ├── mint.html          # 旧链接跳转至 Governance / Participate
+│   ├── dashboard.html     # 旧链接跳转至 Governance / Activity
 │   ├── particle-labubu.html
 │   ├── styles.css
 │   └── app.js

@@ -438,18 +438,158 @@ function initListeners() {
   });
 }
 
+// ---- Redemption interface prototype ----
+function initRedeemPrototype() {
+  const requestView = $("#redeemRequestView");
+  const trackingView = $("#redeemTrackingView");
+  const jurisdiction = $("#redeemJurisdiction");
+  const contact = $("#redeemContact");
+  const startButton = $("#startRedeemBtn");
+  const advanceButton = $("#advanceRedeemBtn");
+  const cancelButton = $("#cancelRedeemBtn");
+
+  if (!requestView || !trackingView || !jurisdiction || !contact || !startButton) {
+    return;
+  }
+
+  const stageContent = [
+    null,
+    {
+      label: "02 / Lock",
+      icon: "lock",
+      heading: "Right reserved for review.",
+      body: "The selected redemption right is held inside this prototype while the custodian prepares its review.",
+      activity: "Redemption right reserved",
+    },
+    {
+      label: "03 / Review",
+      icon: "fact_check",
+      heading: "Custodian review underway.",
+      body: "The object record, delivery destination and custody details are being checked before release.",
+      activity: "Custodian review simulated",
+    },
+    {
+      label: "04 / Delivery",
+      icon: "local_shipping",
+      heading: "Object prepared for delivery.",
+      body: "The physical collectible has entered the simulated delivery stage with its record kept attached.",
+      activity: "Delivery stage simulated",
+    },
+    {
+      label: "05 / Confirm",
+      icon: "verified",
+      heading: "Prototype journey complete.",
+      body: "A production flow would confirm receipt and close or transform the redeemed right onchain.",
+      activity: "Receipt confirmation simulated",
+    },
+  ];
+
+  let currentStage = 1;
+
+  function syncStartButton() {
+    startButton.disabled = !(jurisdiction.value && contact.value);
+  }
+
+  function addPrototypeActivity(textValue) {
+    const list = $("#redeemActivityList");
+    if (!list) return;
+    const item = document.createElement("li");
+    item.innerHTML = `<span>Now</span><div><strong>${escapeHtml(textValue)}</strong><small>Interface simulation</small></div>`;
+    list.prepend(item);
+  }
+
+  function renderTrackingStage() {
+    const stage = stageContent[currentStage];
+    if (!stage) return;
+
+    setText("#trackingStatusTitle", stage.label);
+    setText("#trackingStatusIcon", stage.icon);
+    setText("#trackingStatusHeading", stage.heading);
+    setText("#trackingStatusBody", stage.body);
+
+    $$("#redeemTrackingRail li").forEach((item, index) => {
+      item.classList.toggle("is-complete", index < currentStage);
+      item.classList.toggle("is-current", index === currentStage);
+      const marker = item.querySelector(":scope > span");
+      if (marker) {
+        if (index < currentStage) {
+          marker.className = "material-symbols-outlined";
+          marker.textContent = "check";
+        } else {
+          marker.className = "";
+          marker.textContent = String(index + 1).padStart(2, "0");
+        }
+      }
+    });
+
+    $$("#trackingChecklist li").forEach((item, index) => {
+      item.classList.toggle("is-done", index < currentStage);
+      item.classList.toggle("is-active", index === currentStage);
+      const marker = item.querySelector("span");
+      if (!marker) return;
+      if (index < currentStage) {
+        marker.className = "material-symbols-outlined";
+        marker.textContent = "check";
+      } else if (index === currentStage) {
+        marker.className = "material-symbols-outlined";
+        marker.textContent = "more_horiz";
+      } else {
+        marker.className = "";
+        marker.textContent = "";
+      }
+    });
+
+    if (advanceButton) {
+      const complete = currentStage === stageContent.length - 1;
+      advanceButton.disabled = complete;
+      advanceButton.textContent = complete ? "Prototype complete" : "Simulate next stage";
+    }
+  }
+
+  jurisdiction.addEventListener("change", syncStartButton);
+  contact.addEventListener("change", syncStartButton);
+
+  startButton.addEventListener("click", () => {
+    if (startButton.disabled) return;
+    currentStage = 1;
+    setText("#trackingJurisdiction", jurisdiction.value);
+    setText("#trackingContact", contact.value);
+    requestView.hidden = true;
+    trackingView.hidden = false;
+    renderTrackingStage();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  advanceButton?.addEventListener("click", () => {
+    if (currentStage >= stageContent.length - 1) return;
+    currentStage += 1;
+    renderTrackingStage();
+    addPrototypeActivity(stageContent[currentStage].activity);
+  });
+
+  cancelButton?.addEventListener("click", () => {
+    trackingView.hidden = true;
+    requestView.hidden = false;
+    currentStage = 1;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  syncStartButton();
+}
+
 // ---- Init ----
 document.addEventListener("DOMContentLoaded", () => {
   initScrollButtons();
   initNavigation();
   initListeners();
   initMemberPass();
+  initRedeemPrototype();
 
   // Wallet
   $("#connectBtn")?.addEventListener("click", connectWallet);
   $("#heroConnectBtn")?.addEventListener("click", async () => {
     await connectWallet();
-    if (userAddr) window.location.href = "mint.html";
+    if (userAddr) window.location.href = "dao.html#participation";
   });
 
   // Mint

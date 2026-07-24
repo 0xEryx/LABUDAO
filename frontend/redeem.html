@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070806">
+  <meta name="description" content="Preview a complete LABUDAO collectible redemption request and delivery workflow.">
+  <title>Redeem — LABUDAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="redeem">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html">LABU<span>/DAO</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a href="protocol.html">Protocol</a><a href="dao.html">Governance</a><a class="active" href="redeem.html">Redeem</a>
+    </nav>
+    <button class="button button-wallet" id="connectBtn" type="button"><span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>Connect</button>
+  </header>
+
+  <main class="redeem-main" id="main">
+    <section id="redeemRequestView">
+      <header class="redeem-hero">
+        <div>
+          <p class="eyebrow">Physical redemption / Product prototype</p>
+          <h1>Bring the<br>object <em>home.</em></h1>
+        </div>
+        <p>Turn an eligible right into a traceable request for the physical collectible.</p>
+      </header>
+
+      <aside class="redeem-prototype-note">
+        <span class="material-symbols-outlined" aria-hidden="true">science</span>
+        <div><strong>Interface prototype</strong><small>This preview does not submit a transaction, lock tokens or contact a custodian.</small></div>
+        <span>OFFCHAIN DEMO</span>
+      </aside>
+
+      <section class="redeem-workspace" aria-label="Create redemption request">
+        <div class="redeem-panel redeem-rights-panel">
+          <header><span>01</span><h2>Eligible rights</h2><small>1 available</small></header>
+          <button class="redeem-asset-option is-selected" type="button" aria-pressed="true">
+            <span class="redeem-asset-thumb"><img src="redeem-object.png" alt=""></span>
+            <span><strong>Labubu Pilot Object 01</strong><small>Physical redemption right</small></span>
+            <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+          </button>
+          <dl class="redeem-mini-ledger">
+            <div><dt>Right ID</dt><dd>LB-RIGHT-0001</dd></div>
+            <div><dt>Quantity</dt><dd>1 / 1</dd></div>
+            <div><dt>Status</dt><dd>Eligible</dd></div>
+          </dl>
+        </div>
+
+        <article class="redeem-panel redeem-object-panel">
+          <header><span>02</span><h2>Selected object</h2><small>Custody verified</small></header>
+          <div class="redeem-object-image">
+            <img src="redeem-object.png" alt="Silver archive views of the Labubu Pilot Object 01 collectible">
+            <span>ARCHIVE VIEW / NOT TO SCALE</span>
+          </div>
+          <div class="redeem-object-caption">
+            <div><small>Asset passport</small><strong>LABU—P01—0001</strong></div>
+            <div><small>Current custodian</small><strong>LABUDAO HK</strong></div>
+          </div>
+        </article>
+
+        <form class="redeem-panel redeem-summary-panel" id="redeemRequestForm" onsubmit="return false">
+          <header><span>03</span><h2>Request summary</h2><small>Complete 2 fields</small></header>
+          <label for="redeemJurisdiction">Delivery jurisdiction</label>
+          <div class="redeem-select-wrap">
+            <select id="redeemJurisdiction">
+              <option value="">Select destination</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Singapore">Singapore</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+            </select>
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </div>
+
+          <label for="redeemContact">Preferred contact</label>
+          <div class="redeem-select-wrap">
+            <select id="redeemContact">
+              <option value="">Select contact route</option>
+              <option value="Email">Email</option>
+              <option value="Wallet message">Wallet message</option>
+              <option value="Phone">Phone</option>
+            </select>
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </div>
+
+          <dl class="redeem-summary">
+            <div><dt>Redemption right</dt><dd>1</dd></div>
+            <div><dt>Estimated review</dt><dd>2–3 days</dd></div>
+            <div><dt>Prototype fee</dt><dd>0.00 ETH</dd></div>
+          </dl>
+          <button class="button button-primary button-full" id="startRedeemBtn" type="button" disabled>Create prototype request</button>
+          <p class="redeem-form-note">No wallet signature will be requested.</p>
+        </form>
+      </section>
+
+      <ol class="redeem-stage-rail" aria-label="Redemption stages">
+        <li class="is-current"><span>01</span><div><strong>Request</strong><small>Holder initiates</small></div></li>
+        <li><span>02</span><div><strong>Lock</strong><small>Right reserved</small></div></li>
+        <li><span>03</span><div><strong>Review</strong><small>Custodian checks</small></div></li>
+        <li><span>04</span><div><strong>Delivery</strong><small>Object moves</small></div></li>
+        <li><span>05</span><div><strong>Confirm</strong><small>Record closes</small></div></li>
+      </ol>
+    </section>
+
+    <section class="redeem-tracking" id="redeemTrackingView" hidden>
+      <header class="tracking-header">
+        <div>
+          <p class="eyebrow">Prototype request created</p>
+          <h1>Redemption<br><em>in progress.</em></h1>
+        </div>
+        <div class="tracking-request-id"><span>Request ID</span><strong>LB-RDM-2026-0014</strong><small>Local interface state only</small></div>
+      </header>
+
+      <ol class="redeem-stage-rail redeem-tracking-rail" id="redeemTrackingRail" aria-label="Redemption progress">
+        <li class="is-complete"><span class="material-symbols-outlined" aria-hidden="true">check</span><div><strong>Request</strong><small>Recorded</small></div></li>
+        <li class="is-current"><span>02</span><div><strong>Lock</strong><small>Right reserved</small></div></li>
+        <li><span>03</span><div><strong>Review</strong><small>Custodian checks</small></div></li>
+        <li><span>04</span><div><strong>Delivery</strong><small>Object moves</small></div></li>
+        <li><span>05</span><div><strong>Confirm</strong><small>Record closes</small></div></li>
+      </ol>
+
+      <div class="tracking-grid">
+        <section class="tracking-card tracking-ledger" aria-labelledby="requestDetailsTitle">
+          <header><span>Request ledger</span><strong id="requestDetailsTitle">LB-RDM-2026-0014</strong></header>
+          <div class="tracking-object">
+            <img src="redeem-object.png" alt="">
+            <div><strong>Labubu Pilot Object 01</strong><small>LABU—P01—0001</small></div>
+          </div>
+          <dl>
+            <div><dt>Holder</dt><dd>Preview account</dd></div>
+            <div><dt>Jurisdiction</dt><dd id="trackingJurisdiction">—</dd></div>
+            <div><dt>Contact route</dt><dd id="trackingContact">—</dd></div>
+            <div><dt>Custodian</dt><dd>LABUDAO HK</dd></div>
+            <div><dt>Submitted</dt><dd>Just now</dd></div>
+          </dl>
+        </section>
+
+        <section class="tracking-card tracking-status" aria-labelledby="trackingStatusTitle">
+          <header><span>Current stage</span><strong id="trackingStatusTitle">02 / Lock</strong></header>
+          <div class="tracking-status-copy">
+            <span class="material-symbols-outlined" aria-hidden="true" id="trackingStatusIcon">lock</span>
+            <div><h2 id="trackingStatusHeading">Right reserved for review.</h2><p id="trackingStatusBody">The selected redemption right is held inside this prototype while the custodian prepares its review.</p></div>
+          </div>
+          <ul class="tracking-checklist" id="trackingChecklist">
+            <li class="is-done"><span class="material-symbols-outlined" aria-hidden="true">check</span>Request details captured</li>
+            <li class="is-active"><span class="material-symbols-outlined" aria-hidden="true">more_horiz</span>Reserve redemption right</li>
+            <li><span></span>Verify destination and custody</li>
+            <li><span></span>Prepare physical delivery</li>
+            <li><span></span>Prepare confirmation record</li>
+          </ul>
+          <div class="tracking-actions">
+            <button class="button button-primary" id="advanceRedeemBtn" type="button">Simulate next stage</button>
+            <button class="button button-quiet" id="cancelRedeemBtn" type="button">Cancel preview</button>
+          </div>
+          <p class="redeem-form-note">Nothing has been submitted onchain.</p>
+        </section>
+
+        <section class="tracking-card tracking-activity" aria-labelledby="trackingActivityTitle">
+          <header><span>Activity</span><strong id="trackingActivityTitle">Prototype timeline</strong></header>
+          <ol id="redeemActivityList">
+            <li><span>Now</span><div><strong>Redemption right reserved</strong><small>Interface simulation</small></div></li>
+            <li><span>Now</span><div><strong>Request created</strong><small>LB-RDM-2026-0014</small></div></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="compact-footer"><span>© 2026 LABUDAO / Prototype</span><a href="protocol.html#redeem">Redemption model</a></footer>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
